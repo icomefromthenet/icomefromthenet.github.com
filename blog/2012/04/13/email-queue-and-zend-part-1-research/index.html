@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Blog Archive - IComeFromTheNet.com</title>
+  <title>Email Queue and Zend: Part 1 Research - IComeFromTheNet.com</title>
   <meta name="author" content="Lewis Dyer">
 
   
-  <meta name="description" content="Blog Archive 2012 Email Queue and Zend: Part 1 Research
-Apr 13 2012 posted in email, zend Recent Posts Email Queue and Zend: Part 1 Research GitHub &hellip;">
+  <meta name="description" content="Sending email is a taks that all eventually implement. On an early attempt I did what many do for transaction emails generated and send. Later on in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Apr 13 2012 posted in email, zend Recent Posts Email Queue and Zend: Part 1 Rese
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://icomefromthenet.github.com/blog/archives">
+  <link rel="canonical" href="http://icomefromthenet.github.com/blog/2012/04/13/email-queue-and-zend-part-1-research">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,35 +75,118 @@ Apr 13 2012 posted in email, zend Recent Posts Email Queue and Zend: Part 1 Rese
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Blog Archive</h1>
+    
+      <h1 class="entry-title">Email Queue and Zend: Part 1 Research</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-13T16:01:00+10:00" pubdate data-updated="true">Apr 13<span>th</span>, 2012</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives">
 
 
+<div class="entry-content"><p>Sending email is a taks that all eventually implement. On an early attempt I did what many do for transaction emails generated and send.</p>
 
-  
-  <h2>2012</h2>
+<p>Later on in that same project a new product was added <strong>the 28 day challenge</strong>, as the name suggest consisted of a daily email for 28 days. While not a serious challenge feature creep reared its  uguly head to incude unique emails based on affiliates. I refactored and included new code to load specific templates for each affilate.</p>
 
-<article>
-  
-<h1><a href="/blog/2012/04/13/email-queue-and-zend-part-1-research/">Email Queue and Zend: Part 1 Research</a></h1>
-<time datetime="2012-04-13T16:01:00+10:00" pubdate><span class='month'>Apr</span> <span class='day'>13</span> <span class='year'>2012</span></time>
+<p>A year later we are now adding new products that will send daily email and sms to clients with format customization based on the clients affilate relationship.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/email/'>email</a>, <a class='category' href='/blog/categories/zend/'>zend</a></span>
-</footer>
+<p>Using a dozen cron scripts to generate and send emails now hard to justify. Abstracting the sending into a message queue will simplify both new and old cron scripts.</p>
+
+<h2>What is a queue?</h2>
+
+<p>The two important definitions are queue as a <a href="http://en.wikipedia.org/wiki/Queue_(data_structure)">data structure</a> and queue as <a href="http://en.wikipedia.org/wiki/Message_queue">message queue</a>. I am goint to use a message queue to store each email or sms for later processing.</p>
+
+<p>Lifecycle of a queue is easy to explain the implementation is hard and there
+are many traps to fall into.</p>
+
+<ol>
+<li>A job is generate by external service</li>
+<li>Job is added to the queue for later processing.</li>
+<li>Service starts and asks the queue for jobs.</li>
+<li>Queue response and jobs are processed.</li>
+<li>Processed jobs are removed.</li>
+</ol>
 
 
-</article>
+<p>The traps include issues of scale, error handling and persistence.</p>
 
+<h3>Issues of Scale</h3>
+
+<p>Key terms the number of jobs in a queue and the length of time taken by processing services.</p>
+
+<h3>Error Handling</h3>
+
+<h3>Persistence</h3>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lewis Dyer</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-13T16:01:00+10:00" pubdate data-updated="true">Apr 13<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/email/'>email</a>, <a class='category' href='/blog/categories/zend/'>zend</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://icomefromthenet.github.com/blog/2012/04/13/email-queue-and-zend-part-1-research/" data-via="" data-counturl="http://icomefromthenet.github.com/blog/2012/04/13/email-queue-and-zend-part-1-research/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

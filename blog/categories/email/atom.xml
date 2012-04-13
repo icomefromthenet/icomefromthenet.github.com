@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[IComeFromTheNet.com]]></title>
-  <link href="http://icomefromthenet.github.com/atom.xml" rel="self"/>
+  <title><![CDATA[Category: email | IComeFromTheNet.com]]></title>
+  <link href="http://icomefromthenet.github.com/blog/categories/email/atom.xml" rel="self"/>
   <link href="http://icomefromthenet.github.com/"/>
   <updated>2012-04-13T17:57:32+10:00</updated>
   <id>http://icomefromthenet.github.com/</id>
