@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[IComeFromTheNet.com]]></title>
+  <link href="http://icomefromthenet.github.com/icomefromthenet/atom.xml" rel="self"/>
+  <link href="http://icomefromthenet.github.com/icomefromthenet/"/>
+  <updated>2012-04-13T15:39:48+10:00</updated>
+  <id>http://icomefromthenet.github.com/icomefromthenet/</id>
+  <author>
+    <name><![CDATA[Lewis Dyer]]></name>
+    <email><![CDATA[getintouch@icomefromthenet.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
