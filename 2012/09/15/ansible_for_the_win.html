@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+    <title>IComeFromTheNet.com &mdash; Ansible For the Win</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="where I come from." />
+    <meta name="author" content="Lewis Dyer" />
+    <meta name="generator" content="PieCrust 0.9.0-dev" />
+    <meta name="template-engine" content="Twig" />
+    
+    <link href="/css/monokai.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+   
+    <script type="text/javascript" src="http://use.typekit.com/oqv4wfc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="/js/highlight.pack.js"></script>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="nav">
+	    <a href="/">Home</a>
+	    <a href="/blog.html">Blog</a>
+	    <a href="/projects.html">Projects</a>
+	    <a href="/favourite/index.html">What I Like</a>
+	    <a href="/bookshelf.html">Bookshelf</a>
+        </div>
+
+	            <h1>Ansible For the Win</h1>
+
+        <div id="main" class="main">
+            <div class="content">
+                	<h2>Ansible For the Win</h2>
+	<div class="post-meta">
+		<span class="post-date">September 15, 2012</span>
+						& Tags:
+		<span class="post-tags">
+						<a href="/tag/php.html">php</a>, 						<a href="/tag/ansible.html">ansible</a>					</span>
+	
+	</div>
+	<p>I have arrived at a winner. After deciding to embracing <a href="http://vagrantup.com/">Vagrant</a> to manage my development environments. I trialed both <a href="http://www.opscode.com/">Chef</a> and <a href="http://puppetlabs.com/">Puppet</a> and found both frustrating.</p>
+
+<p>After installing vagrant I used a bash provisioner and <a href="https://gist.github.com/3080128">came up with</a> a few scripts to setup a basic dev environment. I later moved on to trial the industry leaders chef and puppet.</p>
+
+<!--more-->
+
+<h3>I started with Puppet and arrived at the following:</h3>
+
+<p><strong>Pros:</strong></p>
+
+<ol>
+<li>DSL helps ruby beginner.</li>
+<li>Good tutorial series.</li>
+</ol>
+
+<p><strong>Cons:</strong></p>
+
+<ol>
+<li>Ruby for modules.</li>
+<li>No guarantee on the order of executing. No way to easily run apt-get update before other recipes run.</li>
+<li>PHP cookbooks lack polish</li>
+<li>Needed run a daemon on server.</li>
+</ol>
+
+<h3>I later try Chef and found the following:</h3>
+
+<p><strong>Pros:</strong></p>
+
+<ol>
+<li>Data-bags great way to manage dev/live settings.</li>
+<li>Configuration run line by line always knew the order execution of recepies.</li>
+<li>PHP and Pear cookbook.</li>
+</ol>
+
+<p><strong>Cons:</strong></p>
+
+<ol>
+<li>Ruby everywhere, too much. </li>
+<li>Documentation at the time not beginner friendly in my opinion.</li>
+<li>Needed run a daemon on server.</li>
+</ol>
+
+<h3>Ansible to the rescue:</h3>
+
+<p>I would later try a new entrant into the configuration management scene called <a href="http://ansible.cc/">Ansible</a> though still developing and the API changing on each release I believe the features working already justify early adoption.</p>
+
+<ol>
+<li>Uses SSH an not custom crypto.</li>
+<li>Write modules in any language they only have to return json.</li>
+<li>Internal modules don&#8217;t aim for lowest common denominator for example separate packages for APT and Yum.</li>
+<li>Playbooks are written in YML execute in sequence.</li>
+<li>Fails early unlike both chef and puppet.</li>
+<li>No Daemon on production servers.</li>
+</ol>
+
+<p>Like chef and puppet there are plugins for vagrant and both offer  cascading variables to manage dev / live environments as it&#8217;s early days there are no PHP modules, but I was able to translate my CLI scripts to playbooks easily. I look forward to the projects future and version 1 release.</p>
+
+<p>My effors are <a href="https://github.com/icomefromthenet/PHPAnsiblePlaybooks">available though github</a>.</p>
+
+	
+		
+            </div>
+        </div>
+        
+	
+	<div class='nav bottom'>
+	    		<a href='/2012/09/15/ansible_for_the_win.html'>Top</a>
+	    	</div>
+    </div>
+    <div id="footer" class="footer">
+        <div class='container'>
+		    <p>
+		Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a>
+	    </p>
+	    <br style='clear: both;'>	
+        	</div>
+    </div>
+</body>
+</html>
