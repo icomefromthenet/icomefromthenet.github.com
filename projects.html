@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+    <title>IComeFromTheNet.com &mdash; About this website</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="where I come from." />
+    <meta name="author" content="Lewis Dyer" />
+    <meta name="generator" content="PieCrust 0.9.0-dev" />
+    <meta name="template-engine" content="Twig" />
+    
+    <link href="/css/monokai.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+   
+    <script type="text/javascript" src="http://use.typekit.com/oqv4wfc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="/js/highlight.pack.js"></script>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="nav">
+	    <a href="/">Home</a>
+	    <a href="/blog.html">Blog</a>
+	    <a href="/projects.html">Projects</a>
+	    <a href="/favourite/index.html">What I Like</a>
+	    <a href="/bookshelf.html">Bookshelf</a>
+        </div>
+
+	            <h1>IComeFromTheNet.com</h1>
+	
+        <div id="main" class="main">
+            <div class="content">
+                		    <h2><a href="https://github.com/icomefromthenet/Migrations">My Github Profile</a></h2>
+
+<p>Since discovering github and git, I have developed the following projects often to fill a gap in my development toolset. Others I have improved the work of others. </p>
+
+<h2><a href="http://www.icomefromthenet.com/Faker/">Faker - Tests Data Generator</a></h2>
+
+<p>There have been a few ports of the original Perl Faker and a few of those have been to php. What started as another port has grown instead into a comprehensive data generation tool, powered by Doctrine DBAL and Symfony2 Components.</p>
+
+<p>Where I  wanted Faker will help:</p>
+
+<ol>
+<li>Write PHPUnit DBUnit fixtures. </li>
+<li>Fill database with test data for user loading test.</li>
+</ol>
+
+<p>I wanted to achive a balance between the original Perl Faker (used for screen mockups) and all pupose Java tool like <a href="http://databene.org/">Databene</a> or <a href="http://msdn.microsoft.com/en-us/library/aa833211(v=vs.80).aspx">Microsft equivalent</a>. Easier to lean, easy extension and xml and cli based. </p>
+
+<p>Features:</p>
+
+<ol>
+<li>Supports multiple platforms using Doctrine DBAL. </li>
+<li>Supports PHPUnit Dataset XML for DBUnit fixtures.</li>
+<li>Supports Standard Sql DDL (insert statements) for the platforms mentioned above.</li>
+<li>Output Formats have their own templates that can be customized per project. (add own branding).</li>
+<li>Configured via XML file that feels closer to your database.</li>
+<li>Many built in datatypes, Including text, numeric , autoincrements, email , city names etc</li>
+<li>Embraces extension, write own types, writters and locales.</li>
+<li>Installed via composer</li>
+<li>Analyse and build struct from existing database.</li>
+<li>Seed your random number generator for repeatable results (seed global|table|column|type).</li>
+<li>Supported custom locals, generate test data in unicode. (Not just ENGLISH).</li>
+<li>Project folder that can be version controled with your project.</li>
+</ol>
+
+<h2><a href="https://github.com/icomefromthenet/Migrations">Migrations - Schema manager build on Doctrine DBAL and Symfony2</a></h2>
+
+<p>Migrations are a method to manage changes within your data store. With the popularity of distributed source control (git) and their promotion of branching, recording changes to the datastore between commits along multiple branches can become a headace. </p>
+
+<p>Migration tools help to contain changes for each feature and commit into atomic units called <code>migrations</code>. These are applied in sequence and are usually indexed with a timestamp.</p>
+
+<p>PHP frameworks and ORM&#8217;s such like Codeigniter, Propel, CakePHP all provide migration tools, while project like Doctrine provide a diff tool and a migration tool. </p>
+
+<p>I wanted to develop a tool that forfilled the following requirements:</p>
+
+<ol>
+<li>Provides basic migration toolsets.</li>
+<li>Install via composer.</li>
+<li>PHP 5.3 and up.</li>
+<li>Project folder that can be commited to repository.</li>
+<li>Support multiple Platforms.</li>
+<li>Help with Sanity checks to find sync errors.</li>
+</ol>
+
+<p>I found another database migration project project called <a href="https://github.com/davejkiger/mysql-php-migrations">mysql-php-migrations</a>. I decied to model my own project in its image.</p>
+
+<p>I later discovered a lesser know part of doctine the <a href="http://www.doctrine-project.org/projects/dbal.html">Doctrine DBAL</a> and by incorporating within gained a database abstraction supporting multiple platforms.</p>
+
+<p>I would later use symfony2 console, config and file related packages tying them all together with [Pimple DI] (http://pimple.sensiolabs.org/).    </p>
+
+<p>Links :</p>
+
+<ul>
+<li><a href="href=&quot;https://github.com/icomefromthenet/Migrations">Project Repo</a> </li>
+<li><a href="https://github.com/davejkiger/mysql-php-migrations">mysql-php-migrations</a> - Provided inspiration for my own library</li>
+<li><a href="http://guides.rubyonrails.org/migrations.html">Ruby Rails Migrations</a> - Process Guide to migrations.</li>
+</ul>
+
+<h2><a href="https://github.com/icomefromthenet/WURFLExtension">WURFL Decision Engine</a></h2>
+
+<p>During the course of a commerical project I needed the services of a User Agent sniffer <a href="http://dbapi.scientiamobile.com/wiki/index.php/Main_Page">TeraWURFL</a> was a large open source list of user agents and device profiles. The developers have since started a commercial venture and updates are restried to commercial customers.</p>
+
+<p>My extension sought to help a developer once they have identified the UA and have a device profile. How to decide which action to take next?</p>
+
+<p>In essence I developed a decision engine. The engines components include the critera, the decision workflow and a decision strategies. The code was inspired by the symfony2 authentication component.  </p>
+
+<p>I also improved TeraWURFL CLI install scripts by combining them with the symfony2 console.</p>
+
+<p>This was the first project where I used <a href="http://vagrantup.com/">Vagrant</a> vm manager. Which I spend almost as much time learning than writing the projects code.</p>
+
+<h2><a href="https://github.com/icomefromthenet/PHPStats">PHPStats Fork</a></h2>
+
+<p>This is a good example of the power of github. I don&#8217;t have the knowledge to develop a stats library for php. However I still needed to provide probability distributions for <a href="http://www.icomefromthenet.com/Faker/">Faker Tests Data Generator</a>.</p>
+
+<p>The library abused static and global state making it hard to unit test in Faker. By forking I improved the quality and testability. This is the power of collaborative development. </p>
+
+        	            </div>
+        </div>
+        
+	
+	<div class='nav bottom'>
+	    		<a href='/projects.html'>Top</a>
+	    	</div>
+    </div>
+    <div id="footer" class="footer">
+        <div class='container'>
+		    <p>
+		Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a>
+	    </p>
+	    <br style='clear: both;'>	
+        	</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <title>IComeFromTheNet.com &mdash; Switched from Pear to Composer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="where I come from." />
+    <meta name="author" content="Lewis Dyer" />
+    <meta name="generator" content="PieCrust 0.9.0-dev" />
+    <meta name="template-engine" content="Twig" />
+    
+    <link href="/css/monokai.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+   
+    <script type="text/javascript" src="http://use.typekit.com/oqv4wfc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="/js/highlight.pack.js"></script>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="nav">
+	    <a href="/">Home</a>
+	    <a href="/blog.html">Blog</a>
+	    <a href="/projects.html">Projects</a>
+	    <a href="/favourite/index.html">What I Like</a>
+	    <a href="/bookshelf.html">Bookshelf</a>
+        </div>
+
+	            <h1>Switched from Pear to Composer</h1>
+
+        <div id="main" class="main">
+            <div class="content">
+                	<h2>Switched from Pear to Composer</h2>
+	<div class="post-meta">
+		<span class="post-date">October 12, 2012</span>
+						& Tags:
+		<span class="post-tags">
+						<a href="/tag/php.html">php</a>, 						<a href="/tag/faker.html">faker</a>, 						<a href="/tag/migrations.html">migrations</a>					</span>
+	
+	</div>
+	<p>I was using pear for two of my homebrew projects <a href="https://github.com/icomefromthenet/Faker">Faker</a> and <a href="https://github.com/icomefromthenet/Migrations">Migrations</a>. I was not enamored by deployment steps and in my case struggles combined with lack of noob friendly documentation.</p>
+
+<!--more-->
+
+<p>I decide to embrace composer and took the time to modify both libraries to use composer <a href="http://getcomposer.org/doc/articles/vendor-bins.md">vendor bins</a>. I registered both packages with <a href="https://packagist.org/">packagist</a> under the namespace <a href="https://packagist.org/search/?q=icomefromthenet">icomefromthenet</a>. I hope this improves the exposure of both projects.</p>
+
+<p>My experience? Well I believe there is not enough documentation or tutorials for using composer with vendor bins. I had to look at the code from phpunit and behat to supplement my understanding. I took the path of registering both projects before they where ready. It took a few commits to work out the errors, I only hope no one tried to download the packages before they were fixed.</p>
+
+<p>If I were to place another project on packagist I would wait and use a manual repository entry while testing and when complete place on packagist. </p>
+
+	
+		
+            </div>
+        </div>
+        
+	
+	<div class='nav bottom'>
+	    		<a href='/2012/10/12/embracing_composer_for_projects.html'>Top</a>
+	    	</div>
+    </div>
+    <div id="footer" class="footer">
+        <div class='container'>
+		    <p>
+		Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a>
+	    </p>
+	    <br style='clear: both;'>	
+        	</div>
+    </div>
+</body>
+</html>
