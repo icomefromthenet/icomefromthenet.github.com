@@ -108,6 +108,31 @@
 
 <p>This was the first project where I used <a href="http://vagrantup.com/">Vagrant</a> vm manager. Which I spend almost as much time learning than writing the projects code.</p>
 
+<h2><a href="https://github.com/icomefromthenet/ReverseRegex">Reverse Regex</a></h2>
+
+<p>A project with a simple goal, convert a regular expression into a text string. Other platforms have access to same functionality it&#8217;s been implemented in Java, .Net , perl , ruby.</p>
+
+<p>I developed this as part of Faker but decided that others might have use of it and spun it out an example will help illustrate.</p>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Lexer<span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">use</span> PHPStats\Generator\SimpleRandom<span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Parser<span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Generator\Scope<span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;"># load composer
+</span><span style="color: #b1b100;">require</span> <span style="color: #0000ff;">&quot;vendor/autoload.php&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000088;">$lexer</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span>  Lexer<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'[a-z]{10}'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$gen</span>   <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SimpleRandom<span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">10007</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000088;">$parser</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Parser<span style="color: #009900;">&#40;</span><span style="color: #000088;">$lexer</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$parser</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">parse</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getResult</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">generate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #339933;">,</span><span style="color: #000088;">$gen</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #b1b100;">echo</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+&nbsp;</pre>
+
 <h2><a href="https://github.com/icomefromthenet/PHPStats">PHPStats Fork</a></h2>
 
 <p>This is a good example of the power of github. I don&#8217;t have the knowledge to develop a stats library for php. However I still needed to provide probability distributions for <a href="http://www.icomefromthenet.com/Faker/">Faker Tests Data Generator</a>.</p>

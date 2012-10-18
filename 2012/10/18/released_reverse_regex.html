@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <title>IComeFromTheNet.com &mdash; Released ReverseRegex</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="where I come from." />
+    <meta name="author" content="Lewis Dyer" />
+    <meta name="generator" content="PieCrust 0.9.0-dev" />
+    <meta name="template-engine" content="Twig" />
+    
+    <link href="/css/monokai.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+   
+    <script type="text/javascript" src="http://use.typekit.com/oqv4wfc.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="/js/highlight.pack.js"></script>
+</head>
+<body>
+    <div id="container" class="container">
+        <div class="nav">
+	    <a href="/">Home</a>
+	    <a href="/blog.html">Blog</a>
+	    <a href="/projects.html">Projects</a>
+	    <a href="/favourite/index.html">What I Like</a>
+	    <a href="/bookshelf.html">Bookshelf</a>
+        </div>
+
+	            <h1>Released ReverseRegex</h1>
+
+        <div id="main" class="main">
+            <div class="content">
+                	<h2>Released ReverseRegex</h2>
+	<div class="post-meta">
+		<span class="post-date">October 18, 2012</span>
+						& Tags:
+		<span class="post-tags">
+						<a href="/tag/php.html">php</a>, 						<a href="/tag/regex.html">regex</a>					</span>
+	
+	</div>
+	<p>I released a new library today <a href="https://github.com/icomefromthenet/ReverseRegex">ReverseRegex</a>. It uses the regular expression syntax to populate a text string. I developed this component to include in my <a href="https://github.com/icomefromthenet/Faker">Faker</a> project. By using a regex to populate a field I replace the 2 most commonly used column datatypes numeric and text, that is 2 less new DSL to learn.</p>
+
+<p>Database testing tools like Faker on other platforms also use regex&#8217;s to define text patterns I have seen similar code implemented in .Net, Java and Perl and now php. </p>
+
+<!--more-->
+
+<p>Other situations that my find this component useful are:</p>
+
+<ol>
+<li>Generating tests data for web forms</li>
+<li>Generating test data for regular expressions.</li>
+<li>Generating test data for databases. </li>
+</ol>
+
+<p>This project is also the first time I have used <a href="https://travis-ci.org/">travis-ci</a>, It took a few tries to get the build working (problems with submodules) but that <a href="https://travis-ci.org/icomefromthenet/ReverseRegex"><img src="https://travis-ci.org/icomefromthenet/ReverseRegex.png" alt="Build Status" /></a> image is worth every second.</p>
+
+<h3>Example</h3>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Lexer<span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">use</span> PHPStats\Generator\SimpleRandom<span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Parser<span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Generator\Scope<span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #666666; font-style: italic;"># load composer
+</span><span style="color: #b1b100;">require</span> <span style="color: #0000ff;">&quot;vendor/autoload.php&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000088;">$lexer</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span>  Lexer<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'[a-z]{10}'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$gen</span>   <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SimpleRandom<span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">10007</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #000088;">$parser</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Parser<span style="color: #009900;">&#40;</span><span style="color: #000088;">$lexer</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+<span style="color: #000088;">$parser</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">parse</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getResult</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">generate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #339933;">,</span><span style="color: #000088;">$gen</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+<span style="color: #b1b100;">echo</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+&nbsp;</pre>
+
+<h3>Produces Values Like</h3>
+
+<p>jmceohykoa, aclohnotga , jqegzuklcv , ixdbpbgpkl</p>
+
+	
+		
+            </div>
+        </div>
+        
+	
+	<div class='nav bottom'>
+	    		<a href='/2012/10/18/released_reverse_regex.html'>Top</a>
+	    	</div>
+    </div>
+    <div id="footer" class="footer">
+        <div class='container'>
+		    <p>
+		Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a>
+	    </p>
+	    <br style='clear: both;'>	
+        	</div>
+    </div>
+</body>
+</html>
