@@ -33,6 +33,28 @@
 
 <p>Since discovering github and git, I have developed the following projects often to fill a gap in my development toolset. Others I have improved the work of others. </p>
 
+<h2><a href="https://github.com/icomefromthenet/DBALGateway">DBALGateway More Abstraction for Doctrine DBAL</a></h2>
+
+<p>I released a new library <a href="https://github.com/icomefromthenet/DBALGateway">DBALGateway</a> and while the <a href="http://www.doctrine-project.org/projects/dbal.html">Doctrine DBAL</a> is a fantastic extension to PDO with a little more abstraction it becomes easer to use. This component implements <a href="http://martinfowler.com/eaaCatalog/tableDataGateway.html">Table Gateway</a> on top of Doctrine DBAL. This component is heavily inspired by zf2 Table Gateway and can be applied where there is a 1 to 1 mapping of your database to entities.</p>
+
+<h3>What are the benefits?</h3>
+
+<ol>
+<li><p>Using metadata the gateway will convert values, for example DateTime is converted to a stamps and the stamp is converted back to DateTime. </p></li>
+<li><p>Events system, e.g pre<em>select , post</em>delete , pre_insert&#8230; based around the symfony2 event dispatcher.</p></li>
+<li><p>Query Logger using Monolog, you would normally write this yourself.</p></li>
+<li><p>Builder can map records to entities, you could build an active record on top of this gateway.</p></li>
+<li><p>Supply a collection class and it will load them into it.</p></li>
+<li><p>Fluid interface for running selects, inserts, updates and deletes.</p></li>
+</ol>
+
+<h3>Whats are the cons?</h3>
+
+<ol>
+<li>Loose auto-completion in your IDE, for subclasses, only get it for the bases classes.</li>
+<li>Overhead a little more memory and extra method calls.  </li>
+</ol>
+
 <h2><a href="http://www.icomefromthenet.com/Faker/">Faker - Tests Data Generator</a></h2>
 
 <p>There have been a few ports of the original Perl Faker and a few of those have been to php. What started as another port has grown instead into a comprehensive data generation tool, powered by Doctrine DBAL and Symfony2 Components.</p>
