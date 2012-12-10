@@ -4,9 +4,11 @@ html {
 }
 
 body {
-	margin: 0;
-	padding: 0;
+	margin : 0; 
+	padding: 0; 
 	-webkit-font-smoothing: antialiased; 
+	background-image : url(/images/bg2.gif);
+	background-repeat: repeat; 
 }
 
 .link-list {
