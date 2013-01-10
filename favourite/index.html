@@ -1,83 +1,207 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-    <title>IComeFromTheNet.com &mdash; What I Like</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="where I come from." />
-    <meta name="author" content="Lewis Dyer" />
-    <meta name="generator" content="PieCrust 0.9.0-dev" />
-    <meta name="template-engine" content="Twig" />
-    
-    <link href="/css/monokai.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet" />
-   
-    <script type="text/javascript" src="http://use.typekit.com/oqv4wfc.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    <script src="/js/highlight.pack.js"></script>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="where I come from." />
+  <meta name="author" content="Lewis Dyer" />
+  <meta name="generator" content="PieCrust 0.9.0-dev" />
+  <meta name="template-engine" content="Twig" /> 
+  <title>I Come From The Net &mdash; What I Like</title>    
+ 
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <!--<link href="/css/style.css" rel="stylesheet" /> -->
+  <link  href="/css/monokai.css" rel="stylesheet" />
+  <script src="/js/modernizr.foundation.js"></script>
 </head>
 <body>
-    <div id="container" class="container">
-        <div class="nav">
-	    <a href="/">Home</a>
-	    <a href="/blog.html">Blog</a>
-	    <a href="/projects.html">Projects</a>
-	    <a href="/favourite/index.html">What I Like</a>
-	    <a href="/bookshelf.html">Bookshelf</a>
-        </div>
 
-	            <h1>IComeFromTheNet.com</h1>
-	
-        <div id="main" class="main">
-            <div class="content">
-                		    <h2>Media</h2>
+  <!-- Nav Bar -->
 
-<ol>
-<li><a href="/favourite/books">My Favourite Books</a></li>
-<li><a href="/favourite/movies">My Favourite Movies</a></li>
-<li><a href="/favourite/music">My Favourite Music</a></li>
-</ol>
+  <div class="row">
+    <div class="twelve columns">
+      <ul class="nav-bar">
+	<li><a href="/">Home</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/favourite/index.html">What I Like</a></li>
+	<li><a href="/bookshelf.html">Bookshelf</a></li>
+      </ul>
 
-<h2>Tools</h2>
-
-<h3>Favourite IDE</h3>
-
-<p>My prefered IDE is <a href="http://www.activestate.com/komodo-ide">Komodo</a>, Supporting Ruby, Python and PHP out of the box it is the best dynmaic language IDE on the market and its <strong>not</strong> written in Java. Has the usual IDE features with a few extra, for example a reguar expression debugger , a http inspector and a code profiler. For php support for XDebug out of the box and supports the syntax highlighting for Twig and Smarty template library.</p>
-
-<h3>LAMP Stack</h3>
-
-<p>I am a PHP developer at heart and am glad to see the growing professionalism of the communcity with the embrace of tools like composer, phpunit and component based frameworks with Standards like PSR-0 and PSR-1. </p>
-
-<h3>VM Manager</h3>
-
-<p>I used Virtual Box for last 2 years and within the last six months <a href="http://vagrantup.com/">Vagrant</a> to manage project development VM&#8217;s. I would recommend to others to make the switch. I have been caught in the past with differences bewteen dev and production and the time to provision an individual VM per project is worth it. I just wish my netbook could run virtualbox.</p>
-
-<h3>OS Preference.</h3>
-
-<p>I use <a href="www.ubuntu.com">Ubuntu</a> on my laptop, netbook and desktops. I&#8217;m now very much locked into ubuntu and pay for access to Ubuntu One cloud folders. Running linux daily forces you to learn and better to error locally then on your servers. </p>
-
-<h3>Hosting Preference</h3>
-
-<p>I have used <a href="http://www.linode.com/">Linode</a> for last 2 years their control panel is world class and their community library extensive.  I also have a sharded hosing account with a local provider. Managing a mail server is an exercise in pain, better to make that someone else problem. </p>
-
-<h3>Front End Framework.</h3>
-
-<p>I have worked with jQuery and jQuery UI extensively in the past and flirted with ExtJs Version 2 and 3. I am now moving into Backbone.js and jQuery Mobile. </p>
-
-        	            </div>
-        </div>
-        
-	
-	<div class='nav bottom'>
-	    		<a href='/favourite/index.html'>Top</a>
-	    	</div>
+      <h1>I Come From The Net</h1>
+      <hr />
     </div>
-    <div id="footer" class="footer">
-        <div class='container'>
-		    <p>
-		Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a>
-	    </p>
-	    <br style='clear: both;'>	
-        	</div>
+  </div>
+
+  <!-- End Nav -->
+
+
+  <!-- Main Page Content and Sidebar -->
+
+  <div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="nine columns" role="content">
+		    <article>
+	    		
+	    		<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li class="current"><a href="#">What I Like</a></li>
+</ul>
+
+<h2 class="subheader">Media</h2>
+
+<div class="row">
+  <div class="four columns">
+    <div class="panel">
+      <h5><a href="/favourite/books.html">Favourite Books</a></h5>
+      <p>I read alot and here are some of my favourites</p>
     </div>
+  </div>
+  <div class="four columns">
+    <div class="panel">
+      <h5><a href="/favourite/movies.html">Favourite Movies</a></h5>
+      <p>I do enjoy a good movie here are my favouties</p>
+    </div>
+  </div>
+  <div class="four columns">
+    <div class="panel">
+      <h5><a href="/favourite/music.html">Favourite Music</a></h5>
+      <p>A small but fantastic collection, find out more.</p>
+    </div>
+  </div>
+</div>
+
+<h2 class="subheader">Tools</h2>
+
+<div class="row">
+    <div class="six columns">
+        <div class="panel">
+          <h5>Favourite IDE</h5>
+          <p>My prefered IDE is <a href="http://www.activestate.com/komodo-ide">Komodo</a>, Supporting Ruby, Python and PHP out of the box it is the best dynmaic language IDE on the market and its **not** written in Java. Has the usual IDE features with a few extra, for example a reguar expression debugger , a http inspector and a code profiler. For php support for XDebug out of the box and supports the syntax highlighting for Twig and Smarty template library.</p>
+        </div>
+      </div>
+      <div class="six columns">
+        <div class="panel">
+          <h5>LAMP Stack</h5>
+          <p>I am a PHP developer at heart and am glad to see the growing professionalism of the communcity with the embrace of tools like composer, phpunit and component based frameworks with Standards like PSR-0 and PSR-1. </p>
+
+        </div>
+      </div>
+</div>
+
+<p><div class="row">
+    <div class="six columns">
+        <div class="panel">
+          <h5>VM Manager</h5>
+          <p>I used Virtual Box for last 2 years and within the last six months <a href="http://vagrantup.com/">Vagrant</a> to manage project development VM&#8217;s. I would recommend to others to make the switch. I have been caught in the past with differences bewteen dev and production and the time to provision an individual VM per project is worth it. I just wish my netbook could run virtualbox.</p>
+        </div>
+      </div>
+      <div class="six columns">
+        <div class="panel">
+          <h5>OS Preference.</h5>
+          <p>I use <a href="www.ubuntu.com">Ubuntu</a> on my laptop, netbook and desktops. I&#8217;m now very much locked into ubuntu and pay for access to Ubuntu One cloud folders. Running linux daily forces you to learn and better to error locally then on your servers.  </p>
+        </div>
+      </div>
+</div>
+<div class="row">
+    <div class="six columns">
+        <div class="panel">
+          <h5>Hosting Preference</h5>
+          <p>I have used <a href="http://www.linode.com/">Linode</a> for last 2 years their control panel is world class and their community library extensive.  I also have a sharded hosing account with a local provider. Managing a mail server is an exercise in pain, better to make that someone else problem. </p>
+        </div>
+      </div>
+      <div class="six columns">
+        <div class="panel">
+          <h5>Front End Framework.</h5>
+          <p>I have worked with jQuery and jQuery UI extensively in the past and flirted with ExtJs Version 2 and 3. I am now moving into Backbone.js and jQuery Mobile.</p>
+        </div>
+      </div>
+</div></p>
+
+	    </article>
+	      
+    </div>
+
+    <!-- End Main Content -->
+
+
+    <!-- Sidebar -->
+    <aside class="three columns">
+
+      <h5>Categories</h5>
+      <ul class="side-nav">
+       <li><a href="/php.html">PHP</a></li>
+       <li><a href="/ansible.html">Ansible</a></li>
+       
+      </ul>
+    
+    <hr />
+          
+      <h5>Tags</h5>
+      <ul class="side-nav">
+       <li>
+	<a href="/tag/php.html"><span class="round label">PHP</span></a>
+       </li>
+       <li>
+	<a href="/tag/ansible.html"><span class="round label">Ansible</span></a>
+       </li>
+       <li>
+	<a href="/tag/faker.html"><span class="round label">Faker</span></a>
+       </li>
+       <li>
+	<a href="/tag/migrations.html"><span class="round label">Migrations</span></a>
+       </li>
+       <li>
+	<a href="/tag/regex.html"><span class="round label">Regex</span></li></a>
+      </ul>
+    </aside>
+
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+        <div class="twelve columns">
+      <hr />
+      <div class="row">
+        <div class="six columns">
+          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+        </div>
+        <div class="six columns">
+          <ul class="link-list right">
+            <li><a href="/">Home</a></li>
+	    <li><a href="/blog.html">Blog</a></li>
+	    <li><a href="/projects.html">Projects</a></li>
+	    <li><a href="/favourite/index.html">What I Like</a></li>
+	    <li><a href="/bookshelf.html">Bookshelf</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      </footer>
+
+  <!-- End Footer -->
+  
+  
+  <!-- Included JS Files (Compressed) -->
+  <script src="/js/jquery.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  
+  <!-- Initialize JS Plugins -->
+  <script src="/js/app.js"></script>
+  
 </body>
 </html>

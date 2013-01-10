@@ -1,153 +1,187 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-    <title>IComeFromTheNet.com</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="description" content="where I come from." />
-    <meta name="author" content="Lewis Dyer" />
-    <meta name="generator" content="PieCrust 0.9.0-dev" />
-    <meta name="template-engine" content="Twig" />
-    
-    <link href="/css/monokai.css" rel="stylesheet" />
-    <link href="/css/style.css" rel="stylesheet" />
-   
-    <script type="text/javascript" src="http://use.typekit.com/oqv4wfc.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-    <script src="/js/highlight.pack.js"></script>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="where I come from." />
+  <meta name="author" content="Lewis Dyer" />
+  <meta name="generator" content="PieCrust 0.9.0-dev" />
+  <meta name="template-engine" content="Twig" /> 
+  <title>I Come From The Net</title>    
+ 
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <!--<link href="/css/style.css" rel="stylesheet" /> -->
+  <link  href="/css/monokai.css" rel="stylesheet" />
+  <script src="/js/modernizr.foundation.js"></script>
 </head>
 <body>
-    <div id="container" class="container">
-        <div class="nav">
-	    <a href="/">Home</a>
-	    <a href="/blog.html">Blog</a>
-	    <a href="/projects.html">Projects</a>
-	    <a href="/favourite/index.html">What I Like</a>
-	    <a href="/bookshelf.html">Bookshelf</a>
-        </div>
 
-	            <h1>IComeFromTheNet.com</h1>
-	
-        <div id="main" class="main">
-            <div class="content">
-                
-Posts tagged with 'php'
+  <!-- Nav Bar -->
 
-<div class="link-list">
-        <ul>
-            <li>
-            	<a class="article" href="/2012/11/05/doctrine_dbal_table_gateway.html">
-		Released Doctrine DBAL Table Gateway
-	</a>
-	<span class="meta">
-		November 5, 2012
-	</span>
-	<p class="description">
-		<p>I released a new library today <a href="https://github.com/icomefromthenet/DBALGateway">DBALGateway</a>. <a href="http://www.doctrine-project.org/projects/dbal.html">Doctrine DBAL</a> is a fantastic extension to PDO with a little more abstraction it becomes easer to use. This component implements <a href="http://martinfowler.com/eaaCatalog/tableDataGateway.html">Table Gateway</a> on top of Doctrine DBAL. This component is heavily inspired by zf2 Table Gateway and can be applied where there is a 1 to 1 mapping of your database to entities.</p>
+  <div class="row">
+    <div class="twelve columns">
+      <ul class="nav-bar">
+	<li><a href="/">Home</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/favourite/index.html">What I Like</a></li>
+	<li><a href="/bookshelf.html">Bookshelf</a></li>
+      </ul>
+
+      <h1>I Come From The Net</h1>
+      <hr />
+    </div>
+  </div>
+
+  <!-- End Nav -->
 
 
+  <!-- Main Page Content and Sidebar -->
+
+  <div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="nine columns" role="content">
 		
-					Category: <span class="post-cat"><a href="/php.html">php</a></span>
-							Tags:
-			<span class="post-tags">
-								<a href="/tag/php.html">php</a>, 								<a href="/tag/doctrine.html">doctrine</a>							</span>
-				
-			</p>
-            </li>
-        </ul>
-</div>
-<div class="link-list">
-        <ul>
-            <li>
-            	<a class="article" href="/2012/10/18/released_reverse_regex.html">
-		Released ReverseRegex
-	</a>
-	<span class="meta">
-		October 18, 2012
-	</span>
-	<p class="description">
-		<p>I released a new library today <a href="https://github.com/icomefromthenet/ReverseRegex">ReverseRegex</a>. It uses the regular expression syntax to populate a text string. I developed this component to include in my <a href="https://github.com/icomefromthenet/Faker">Faker</a> project. By using a regex to populate a field I replace the 2 most commonly used column datatypes numeric and text, that is 2 less new DSL to learn.</p>
+	<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li class="unavailable"><a href="#">Tags</a></li>
+  <li class="current"><a href="#">php</a></li>
+</ul>
+
+
+        <article>
+	<h3><a href="/2012/10/18/released_reverse_regex.html">Released ReverseRegex</a></h3>
+				<h6>Category: <a href="/php.html">php</a></h6>
+			
+
+	<p>I released a new library today <a href="https://github.com/icomefromthenet/ReverseRegex">ReverseRegex</a>. It uses the regular expression syntax to populate a text string. I developed this component to include in my <a href="https://github.com/icomefromthenet/Faker">Faker</a> project. By using a regex to populate a field I replace the 2 most commonly used column datatypes numeric and text, that is 2 less new DSL to learn.</p>
 
 <p>Database testing tools like Faker on other platforms also use regex&#8217;s to define text patterns I have seen similar code implemented in .Net, Java and Perl and now php. </p>
 
 
-		
-					Category: <span class="post-cat"><a href="/php.html">php</a></span>
-							Tags:
-			<span class="post-tags">
-								<a href="/tag/php.html">php</a>, 								<a href="/tag/regex.html">regex</a>							</span>
-				
-			</p>
-            </li>
-        </ul>
-</div>
-<div class="link-list">
-        <ul>
-            <li>
-            	<a class="article" href="/2012/10/12/embracing_composer_for_projects.html">
-		Switched from Pear to Composer
-	</a>
-	<span class="meta">
-		October 12, 2012
-	</span>
-	<p class="description">
-		<p>I was using pear for two of my homebrew projects <a href="https://github.com/icomefromthenet/Faker">Faker</a> and <a href="https://github.com/icomefromthenet/Migrations">Migrations</a>. I was not enamored by deployment steps and in my case struggles combined with lack of noob friendly documentation.</p>
+	
+				<a href="/2012/10/18/released_reverse_regex.html">Read More</a>
+		<hr />
+</article>
+        <article>
+	<h3><a href="/2012/10/12/embracing_composer_for_projects.html">Switched from Pear to Composer</a></h3>
+				<h6>Category: <a href="/php.html">php</a></h6>
+			
+
+	<p>I was using pear for two of my homebrew projects <a href="https://github.com/icomefromthenet/Faker">Faker</a> and <a href="https://github.com/icomefromthenet/Migrations">Migrations</a>. I was not enamored by deployment steps and in my case struggles combined with lack of noob friendly documentation.</p>
 
 
-		
-					Category: <span class="post-cat"><a href="/php.html">php</a></span>
-							Tags:
-			<span class="post-tags">
-								<a href="/tag/php.html">php</a>, 								<a href="/tag/faker.html">faker</a>, 								<a href="/tag/migrations.html">migrations</a>							</span>
-				
-			</p>
-            </li>
-        </ul>
-</div>
-<div class="link-list">
-        <ul>
-            <li>
-            	<a class="article" href="/2012/09/15/ansible_for_the_win.html">
-		Ansible For the Win
-	</a>
-	<span class="meta">
-		September 15, 2012
-	</span>
-	<p class="description">
-		<p>I have arrived at a winner. After deciding to embracing <a href="http://vagrantup.com/">Vagrant</a> to manage my development environments. I trialed both <a href="http://www.opscode.com/">Chef</a> and <a href="http://puppetlabs.com/">Puppet</a> and found both frustrating.</p>
+	
+				<a href="/2012/10/12/embracing_composer_for_projects.html">Read More</a>
+		<hr />
+</article>
+        <article>
+	<h3><a href="/2012/09/15/ansible_for_the_win.html">Ansible For the Win</a></h3>
+				<h6>Category: <a href="/ansible.html">ansible</a></h6>
+			
+
+	<p>I have arrived at a winner. After deciding to embracing <a href="http://vagrantup.com/">Vagrant</a> to manage my development environments. I trialed both <a href="http://www.opscode.com/">Chef</a> and <a href="http://puppetlabs.com/">Puppet</a> and found both frustrating.</p>
 
 <p>After installing vagrant I used a bash provisioner and <a href="https://gist.github.com/3080128">came up with</a> a few scripts to setup a basic dev environment. I later moved on to trial the industry leaders chef and puppet.</p>
 
 
-		
-					Category: <span class="post-cat"><a href="/ansible.html">ansible</a></span>
-							Tags:
-			<span class="post-tags">
-								<a href="/tag/php.html">php</a>, 								<a href="/tag/ansible.html">ansible</a>							</span>
-				
-			</p>
-            </li>
-        </ul>
-</div>
-
-
-<div id="navigation">
-		</div>
-
-            </div>
-        </div>
-        
 	
-	<div class='nav bottom'>
-	    		<a href='/tag/php.html'>Top</a>
-	    	</div>
+				<a href="/2012/09/15/ansible_for_the_win.html">Read More</a>
+		<hr />
+</article>
+
+
+	<ul class="pagination">
+	  		<li class="arrow unavailable"><a href="">Older Entries</a></li>
+	  	  
+	  					<li class="current"><a href="/tag/php.html">1</a></li>
+			  	  
+			<li class="arrow unavailable"><a href="">Newer Entries</a></li>
+		</ul>
+
+      
     </div>
-    <div id="footer" class="footer">
-        <div class='container'>
-		    <p>
-		Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a>
-	    </p>
-	    <br style='clear: both;'>	
-        	</div>
+
+    <!-- End Main Content -->
+
+
+    <!-- Sidebar -->
+    <aside class="three columns">
+
+      <h5>Categories</h5>
+      <ul class="side-nav">
+       <li><a href="/php.html">PHP</a></li>
+       <li><a href="/ansible.html">Ansible</a></li>
+       
+      </ul>
+    
+    <hr />
+          
+      <h5>Tags</h5>
+      <ul class="side-nav">
+       <li>
+	<a href="/tag/php.html"><span class="round label">PHP</span></a>
+       </li>
+       <li>
+	<a href="/tag/ansible.html"><span class="round label">Ansible</span></a>
+       </li>
+       <li>
+	<a href="/tag/faker.html"><span class="round label">Faker</span></a>
+       </li>
+       <li>
+	<a href="/tag/migrations.html"><span class="round label">Migrations</span></a>
+       </li>
+       <li>
+	<a href="/tag/regex.html"><span class="round label">Regex</span></li></a>
+      </ul>
+    </aside>
+
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+        <div class="twelve columns">
+      <hr />
+      <div class="row">
+        <div class="six columns">
+          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+        </div>
+        <div class="six columns">
+          <ul class="link-list right">
+            <li><a href="/">Home</a></li>
+	    <li><a href="/blog.html">Blog</a></li>
+	    <li><a href="/projects.html">Projects</a></li>
+	    <li><a href="/favourite/index.html">What I Like</a></li>
+	    <li><a href="/bookshelf.html">Bookshelf</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+      </footer>
+
+  <!-- End Footer -->
+  
+  
+  <!-- Included JS Files (Compressed) -->
+  <script src="/js/jquery.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  
+  <!-- Initialize JS Plugins -->
+  <script src="/js/app.js"></script>
+  
 </body>
 </html>
