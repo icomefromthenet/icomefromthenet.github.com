@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="where I come from." />
+  <meta name="author" content="Lewis Dyer" />
+  <meta name="generator" content="PieCrust 0.9.0-dev" />
+  <meta name="template-engine" content="Twig" /> 
+  <title>IcomeFromTheNet  &mdash; Released LaterJob - Database queue for shared web hosting with metrics</title>    
+ 
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/foundation.min.css">
+  <link rel="stylesheet" href="/css/app.css">
+  
+  <script src="/js/modernizr.foundation.js"></script>
+</head>
+<body>
+
+  <!-- Nav Bar -->
+
+  <div class="row">
+    <div class="twelve columns">
+      <ul class="nav-bar">
+	<li><a href="/">Home</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+        <li><a href="/projects.html">Projects</a></li>
+        <li><a href="/favourite/index.html">What I Like</a></li>
+	<li><a href="/bookshelf.html">Bookshelf</a></li>
+      </ul>
+
+      <h1>I Come From The Net.</h1>
+      <hr />
+    </div>
+  </div>
+
+  <!-- End Nav -->
+
+
+  <!-- Main Page Content and Sidebar -->
+
+  <div class="row">
+
+    <!-- Main Blog Content -->
+    <div class="nine columns" role="content">
+	<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li class="current"><a href="#">Released LaterJob - Database queue for shared web hosting with metrics</a></li>
+</ul>
+
+<article>
+			<div class="text-right">
+			<span class="round label">
+							Written on December 20, 2012    
+						</span>
+		</div>
+		<h3><a href="#">Released LaterJob - Database queue for shared web hosting with metrics</a></h3>
+		<div>
+		Tags:
+					<a href="/tag/php.html"><span class="round label">php</span></a>, 					<a href="/tag/projects.html"><span class="round label">projects</span></a>				</div>
+		<br /><br />
+	<p>I released a new library today <a href="https://github.com/icomefromthenet/LaterJob">LaterJob</a>.</p>
+
+<p>I have had an interest in simple queues since writing a email campaign tool in 2010, In that project I used a single cron worker and a database table and given the small scale it worked. It was during this development I began to look at how I could answer the important question <strong>how long does it take to send?</strong> with different phrasing <strong>what is the service time of the queue, the time taken from a job entering to it leaving?</strong></p>
+
+<!--more-->
+
+<p>While it is possible to quote arbitrary number &#8216;say all emails are sent in 3 hours&#8217;, only by analyzing metrics will some certainty be known. I could not find a php database queue library that provided a database backed queue and metrics functionality. I began LaterJob soon after finishing my search.</p>
+
+<h5>I wanted to ensure that:</h5>
+
+<ol>
+<li>Queue designed for single node.</li>
+<li>Working on limited php environment ie shared hosting.</li>
+<li>Install via composer.</li>
+<li>Provided a Restful API to build client side graphs / tools.</li>
+</ol>
+
+<h3>Concepts</h3>
+
+<h4>Workers.</h4>
+
+<p>A Worker requires the cron and not a daemon.  You may have overlapping executions, as each worker will obtain a lock first on a set of jobs. The lock is temporal and can expire, if a script exists due to unforeseen circumstances the lock will eventually expire and the jobs will be picked up by a later worker execution.</p>
+
+<p>I would advise not too run more than one cron job for the same worker. Single cron job with quick execution time (every minute) should be sufficent for a database backed queue. If your looking for more capacity might be time to switch away from a database queue.</p>
+
+<p>A worker has the following 3 states, in the activity log</p>
+
+<ol>
+<li>Starting.</li>
+<li>Finished.</li>
+<li>Error. </li>
+</ol>
+
+<h4>Jobs.</h4>
+
+<p>A job will be processed by a worker, when job is added to the queue it is given the inital state of <code>added</code>. When worker begins processing a job will transition into the <code>starting</code> state, from there it can transition to one of 3 states. The frist is <code>finished</code> this state a job has sucessfuly been processed. The second states is <code>error</code> the job could not be completed but can be retried later. The last possible state is the <code>failed</code> in which a job can not be completed and will not be executed again.</p>
+
+<p>A job has a <code>retry count</code> the default number is set in the config, the retry also has a temporal lock to prevent poisioning. The timer can be set in the config to with a short running worker i that the job will be picked up by a later execution after the expiry of the timers.</p>
+
+<p>The job states are, in the activity log:
+1. Added (inital)
+2. Starting
+3. Finished (last state)
+4. Error
+5. Failed (last state)</p>
+
+<h4>Activity.</h4>
+
+<p>Each time a worker and job transtion the action is recorded in the activity log, this log can be accessed via the activity API and is used to drive metrics delivered by the monitor. This activity should be purged from time to time using a cron script and the purge method on the activity API. I would advise every 2 weeks purge. After the activity is monitored its wasted space.</p>
+
+<h4>Monitor.</h4>
+
+<p>To manage the queue a monitor is run via a cron script once an hour. The monitor API will run over the activity for the last hour and generate metrics which can be combined into periods such as 6hours , 12 hours , 1 day, 1 week to identify trends and observe the health of a queue.</p>
+
+<p>The monitor will only run once for that hour, a cron script that runs 4 times and hour will only execute the first time. I would run the monitor 4 times an hour to catch short periods of downtime.</p>
+
+<p>If the hour is missed, you will be responsible for running the command with a timestamp argument for that missed hour. I have assumed that if the server down for extended period there won&#8217;t be much activity to monitor.</p>
+
+<h2>Metrics</h2>
+
+<p>The metrics are recorded for job and workers,</p>
+
+<h4>Workers</h4>
+
+<ol>
+<li>Maximum executing time of a worker in the hour.</li>
+<li>Minimum executing time of a worker in the hour.</li>
+<li>Mean executing time of a worker in the hour.</li>
+<li>Mean Throughput of wokers in the hour, the number of jobs processed by worker.</li>
+<li>Maxium Throughput, from config, maximum number of jobs that a worker can process.</li>
+<li>Worker Utilization (Mean Throughput / Maximum Throughput).</li>
+</ol>
+
+<h4>Jobs</h4>
+
+<ol>
+<li>Number of jobs added in the last hour.</li>
+<li>Number of jobs started in the last hour.</li>
+<li>Number of jobs failed in the last hour.</li>
+<li>Number of jobs finished in the last hour.</li>
+<li>Number of jobs in error in the last hour.</li>
+<li>Mean service time, ie time from when job transitioned to added to finished / failed.</li>
+<li>Minimum Service Time.</li>
+<li>Maximum Service Time.</li>
+</ol>
+
+<h4>The most important metric?</h4>
+
+<p>The mean service time and worker utilization should be watched closley. If the service time is greater than a base time jobs are not cleared fast enough. If worker utilization is high scripts are processing their maximum.</p>
+
+<h4>Increase Capacity?</h4>
+
+<p>There are two options run workers more frequently or increase the maximum throughput thus lowering utilization and increasing capacity for busy times. </p>
+
+<h3>Example Runner of a job.</h3>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+&nbsp;
+    <span style="color: #009933; font-style: italic;">/**
+    *  Example Runner for a job
+    *
+    * @param InputInterface $input An InputInterface instance
+    * @param OutputInterface $output An OutputInterface instance
+    * @return null|integer null or 0 if everything went fine, or an error code
+    */</span>
+    <span style="color: #000000; font-weight: bold;">protected</span> <span style="color: #000000; font-weight: bold;">function</span> execute<span style="color: #009900;">&#40;</span>InputInterface <span style="color: #000088;">$input</span><span style="color: #339933;">,</span> OutputInterface <span style="color: #000088;">$output</span><span style="color: #009900;">&#41;</span>
+    <span style="color: #009900;">&#123;</span>
+        <span style="color: #000088;">$queue</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getHelper</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'queue'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getQueue</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #666666; font-style: italic;"># output to console.
+</span>        <span style="color: #000088;">$queue</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getDispatcher</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">addSubscriber</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> ConsoleSubscriber<span style="color: #009900;">&#40;</span><span style="color: #000088;">$output</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #666666; font-style: italic;"># fetch a worker instance from queue api
+</span>        <span style="color: #000088;">$worker</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$queue</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">worker</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+&nbsp;
+        try <span style="color: #009900;">&#123;</span>
+            <span style="color: #666666; font-style: italic;"># start the worker, record started state in the activity log
+</span>            <span style="color: #000088;">$worker</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+            <span style="color: #666666; font-style: italic;"># load the allocator, allocates work from pool of locked jobs 
+</span>            <span style="color: #000088;">$allocator</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$worker</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">receive</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+            <span style="color: #666666; font-style: italic;"># fetch worker handle
+</span>            <span style="color: #000088;">$handle</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$worker</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getId</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+            <span style="color: #666666; font-style: italic;"># iterate over jobs to proces
+</span>     <span style="color: #b1b100;">foreach</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$allocator</span> <span style="color: #b1b100;">as</span> <span style="color: #000088;">$job</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+                <span style="color: #666666; font-style: italic;"># inner error catch so error job wont stop worker processing
+</span>                try <span style="color: #009900;">&#123;</span>
+&nbsp;
+                    <span style="color: #666666; font-style: italic;"># start job, will transition job from added to starting in the activity log
+</span>                    <span style="color: #000088;">$job</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$handle</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+                    <span style="color: #666666; font-style: italic;"># simulate time taken by a single job to process
+</span>                    <span style="color: #000088;">$sleep</span> <span style="color: #339933;">=</span> <span style="color: #009900;">&#40;</span>integer<span style="color: #009900;">&#41;</span> <a href="http://www.php.net/mt_rand"><span style="color: #990000;">mt_rand</span></a><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span><span style="color: #cc66cc;">15</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>    
+                    <a href="http://www.php.net/sleep"><span style="color: #990000;">sleep</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$sleep</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>        
+&nbsp;
+                    <span style="color: #666666; font-style: italic;"># simulate a chance to fail    
+</span>                    <span style="color: #000088;">$value</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$this</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">floatRand</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #339933;">,</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+                    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$value</span> <span style="color: #339933;">&lt;=</span> <span style="color:#800080;">0.08</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+                        <span style="color: #666666; font-style: italic;"># Setting the rety left to 0 to force a `failed` transition.
+</span>                        <span style="color: #666666; font-style: italic;"># the api will decerement the count for you normally.
+</span>                        <span style="color: #000088;">$job</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getStorage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setRetryLeft</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+                        <span style="color: #666666; font-style: italic;"># throw exception to be caught by inner handler
+</span>                        <span style="color: #b1b100;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> LaterJobException<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'failure has occured'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                    <span style="color: #009900;">&#125;</span>
+&nbsp;
+                    <span style="color: #666666; font-style: italic;"># cause the `error` transition if retry counter &gt; 0
+</span>                    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$value</span> <span style="color: #339933;">&lt;=</span> <span style="color:#800080;">0.08</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+                        <span style="color: #b1b100;">throw</span> <span style="color: #000000; font-weight: bold;">new</span> LaterJobException<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'error has occured'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                    <span style="color: #009900;">&#125;</span>
+&nbsp;
+                    <span style="color: #666666; font-style: italic;"># normal execution finished, transition from starting to finished in activity log
+</span>                    <span style="color: #000088;">$job</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">finish</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$handle</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+                <span style="color: #009900;">&#125;</span>
+                catch<span style="color: #009900;">&#40;</span>LaterJobException <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+&nbsp;
+                    <span style="color: #666666; font-style: italic;"># transiton to failed or error  up to the developer to handle
+</span>                    <span style="color: #666666; font-style: italic;"># which transiton to pick, you may want the option to ignore failures
+</span>                    <span style="color: #666666; font-style: italic;"># and go to failed.
+</span>                    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$job</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getRetryCount</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">&gt;</span> <span style="color: #cc66cc;">0</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+                        <span style="color: #000088;">$job</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$handle</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>    
+                    <span style="color: #009900;">&#125;</span>
+                    <span style="color: #b1b100;">else</span> <span style="color: #009900;">&#123;</span>
+                        <span style="color: #000088;">$job</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">fail</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$handle</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>    
+                    <span style="color: #009900;">&#125;</span>
+                <span style="color: #009900;">&#125;</span>
+&nbsp;
+            <span style="color: #009900;">&#125;</span>
+&nbsp;
+        <span style="color: #666666; font-style: italic;"># finish the worker, will record finished state in activity log
+</span>            <span style="color: #000088;">$worker</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">finish</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+        <span style="color: #009900;">&#125;</span> catch<span style="color: #009900;">&#40;</span>LaterJobException <span style="color: #000088;">$e</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+            <span style="color: #666666; font-style: italic;"># transition to error state, will record error state in activity log
+</span>            <span style="color: #000088;">$worker</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">error</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$handle</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000088;">$e</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getMessage</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+            <span style="color: #b1b100;">throw</span> <span style="color: #000088;">$e</span><span style="color: #339933;">;</span>            
+        <span style="color: #009900;">&#125;</span>
+&nbsp;
+    <span style="color: #b1b100;">return</span> <span style="color: #cc66cc;">0</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>
+
+</article>
+      
+    </div>
+
+    <!-- End Main Content -->
+
+
+    <!-- Sidebar -->
+    <aside class="three columns">
+
+      <h5>Categories</h5>
+      <ul class="side-nav">
+       <li><a href="/php.html">PHP</a></li>
+       <li><a href="/ansible.html">Ansible</a></li>
+       
+      </ul>
+    
+    <hr />
+          
+      <h5>Tags</h5>
+      <ul class="side-nav">
+       <li>
+	<a href="/tag/php.html"><span class="round label">PHP</span></a>
+       </li>
+       <li>
+	<a href="/tag/ansible.html"><span class="round label">Ansible</span></a>
+       </li>
+       <li>
+	<a href="/tag/faker.html"><span class="round label">Faker</span></a>
+       </li>
+       <li>
+	<a href="/tag/migrations.html"><span class="round label">Migrations</span></a>
+       </li>
+       <li>
+	<a href="/tag/regex.html"><span class="round label">Regex</span></li></a>
+      <li>
+	<a href="/tag/projects.html"><span class="round label">Projects</span></li></a>
+      </li>
+      </ul>
+    </aside>
+
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+        <div class="twelve columns">
+      <hr />
+      <div class="row">
+        <div class="six columns">
+          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+        </div>
+        <div class="six columns">
+          <ul class="link-list right">
+            <li><a href="/">Home</a></li>
+	    <li><a href="/blog.html">Blog</a></li>
+	    <li><a href="/projects.html">Projects</a></li>
+	    <li><a href="/favourite/index.html">What I Like</a></li>
+	    <li><a href="/bookshelf.html">Bookshelf</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      </footer>
+
+  <!-- End Footer -->
+  
+  
+  <!-- Included JS Files (Compressed) -->
+  <script src="/js/jquery.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  
+  <!-- Initialize JS Plugins -->
+  <script src="/js/app.js"></script>
+  
+</body>
+</html>
