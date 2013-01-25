@@ -68,18 +68,18 @@
 		<br /><br />
 	<p>I released a new library today <a href="https://github.com/icomefromthenet/LaterJob">LaterJob</a>.</p>
 
-<p>I have had an interest in simple queues since writing a email campaign tool in 2010, In that project I used a single cron worker and a database table and given the small scale it worked. It was during this development I began to look at how I could answer the important question <strong>how long does it take to send?</strong> with different phrasing <strong>what is the service time of the queue, the time taken from a job entering to it leaving?</strong></p>
+<p>I have had an interest in simple queues since writing an email campaign tool in 2010. In that project I used a single cron worker and a database table and given the small scale it worked. During development I began to ask myself an important question <strong>how long does it take to send?</strong> with different phrasing <strong>what is the service time of the queue, the time taken from a job entering to it leaving?</strong></p>
 
 <!--more-->
 
-<p>While it is possible to quote arbitrary number &#8216;say all emails are sent in 3 hours&#8217;, only by analyzing metrics will some certainty be known. I could not find a php database queue library that provided a database backed queue and metrics functionality. I began LaterJob soon after finishing my search.</p>
+<p>While it is possible to quote an arbitrary number &#8216;say all emails are sent in 3 hours&#8217;, only by analyzing a set of sending metrics will some certainty be known and I couldn&#8217;t find a php queuing library providing a metrics so I began LaterJob after finishing my search.</p>
 
 <h5>I wanted to ensure that:</h5>
 
 <ol>
 <li>Queue designed for single node.</li>
-<li>Working on limited php environment ie shared hosting.</li>
-<li>Install via composer.</li>
+<li>Working on limited php environment (shared hosting).</li>
+<li>Install via Composer.</li>
 <li>Provided a Restful API to build client side graphs / tools.</li>
 </ol>
 
@@ -87,11 +87,11 @@
 
 <h4>Workers.</h4>
 
-<p>A Worker requires the cron and not a daemon.  You may have overlapping executions, as each worker will obtain a lock first on a set of jobs. The lock is temporal and can expire, if a script exists due to unforeseen circumstances the lock will eventually expire and the jobs will be picked up by a later worker execution.</p>
+<p>A worker requires a cron script and not a daemon, you may have overlapping executions with each obtaining a lock on a set of jobs. The lock is temporal and will expire which is useful if a script dies in the middle of an execution and once the lock expires those jobs will be picked up by a later worker execution.</p>
 
-<p>I would advise not too run more than one cron job for the same worker. Single cron job with quick execution time (every minute) should be sufficent for a database backed queue. If your looking for more capacity might be time to switch away from a database queue.</p>
+<p>I advise you to not run more than one cron script for the same worker ( ok if executions overlap). A single cron job with quick execution time (every minute) should be sufficient for a database backed queue. </p>
 
-<p>A worker has the following 3 states, in the activity log</p>
+<p>A worker has the following 3 states, in the activity log:</p>
 
 <ol>
 <li>Starting.</li>
@@ -101,32 +101,23 @@
 
 <h4>Jobs.</h4>
 
-<p>A job will be processed by a worker, when job is added to the queue it is given the inital state of <code>added</code>. When worker begins processing a job will transition into the <code>starting</code> state, from there it can transition to one of 3 states. The frist is <code>finished</code> this state a job has sucessfuly been processed. The second states is <code>error</code> the job could not be completed but can be retried later. The last possible state is the <code>failed</code> in which a job can not be completed and will not be executed again.</p>
+<p>A job represents a unit of work and are processed by workers. Upon entering a queue a job has an initial state <code>added</code> when processing begins it transitions to <code>starting</code> from there it can translate to one of 3 states the first state <code>finished</code> occurring when a job has a successful conclusion the second <code>error</code> when the job could not be completed but retried later with the last <code>failed</code> occurring at an error and the exhaustion of the retry limit. </p>
 
-<p>A job has a <code>retry count</code> the default number is set in the config, the retry also has a temporal lock to prevent poisioning. The timer can be set in the config to with a short running worker i that the job will be picked up by a later execution after the expiry of the timers.</p>
-
-<p>The job states are, in the activity log:
-1. Added (inital)
-2. Starting
-3. Finished (last state)
-4. Error
-5. Failed (last state)</p>
+<p>After a job has transitioned to error state a temporal lock is added introducing a delay before the next retry. This timer is set along with the retry limit in the queue configuration. </p>
 
 <h4>Activity.</h4>
 
-<p>Each time a worker and job transtion the action is recorded in the activity log, this log can be accessed via the activity API and is used to drive metrics delivered by the monitor. This activity should be purged from time to time using a cron script and the purge method on the activity API. I would advise every 2 weeks purge. After the activity is monitored its wasted space.</p>
+<p>Each time a worker and job transition the action is recorded into the activity log. Accessed via the activity API this information is used to generate metrics by the monitor. </p>
 
 <h4>Monitor.</h4>
 
-<p>To manage the queue a monitor is run via a cron script once an hour. The monitor API will run over the activity for the last hour and generate metrics which can be combined into periods such as 6hours , 12 hours , 1 day, 1 week to identify trends and observe the health of a queue.</p>
+<p>The monitor is run via a cron script once an hour and will run over the activity for the last hour and generate metrics which can be combined into periods like 6hours , 12 hours , 1 day, 1 week identifying trends and generating queue health information.</p>
 
-<p>The monitor will only run once for that hour, a cron script that runs 4 times and hour will only execute the first time. I would run the monitor 4 times an hour to catch short periods of downtime.</p>
-
-<p>If the hour is missed, you will be responsible for running the command with a timestamp argument for that missed hour. I have assumed that if the server down for extended period there won&#8217;t be much activity to monitor.</p>
+<p>The monitor locks itself preventing overlapping executions and recounts. For example a script that runs 4 times and hour will only execute once but If the server was down for 2 hours the monitor will allow next 2 executions to run and cover the backlog. </p>
 
 <h2>Metrics</h2>
 
-<p>The metrics are recorded for job and workers,</p>
+<p>Metrics are recorded for job and workers,</p>
 
 <h4>Workers</h4>
 
@@ -134,9 +125,9 @@
 <li>Maximum executing time of a worker in the hour.</li>
 <li>Minimum executing time of a worker in the hour.</li>
 <li>Mean executing time of a worker in the hour.</li>
-<li>Mean Throughput of wokers in the hour, the number of jobs processed by worker.</li>
-<li>Maxium Throughput, from config, maximum number of jobs that a worker can process.</li>
-<li>Worker Utilization (Mean Throughput / Maximum Throughput).</li>
+<li>Mean throughput of workers in the hour, the number of jobs processed by worker.</li>
+<li>Maximum throughput, from config, maximum number of jobs that a worker can process.</li>
+<li>Worker utilization (mean throughput / maximum throughput).</li>
 </ol>
 
 <h4>Jobs</h4>
@@ -148,13 +139,13 @@
 <li>Number of jobs finished in the last hour.</li>
 <li>Number of jobs in error in the last hour.</li>
 <li>Mean service time, ie time from when job transitioned to added to finished / failed.</li>
-<li>Minimum Service Time.</li>
-<li>Maximum Service Time.</li>
+<li>Minimum service Time.</li>
+<li>Maximum service Time.</li>
 </ol>
 
 <h4>The most important metric?</h4>
 
-<p>The mean service time and worker utilization should be watched closley. If the service time is greater than a base time jobs are not cleared fast enough. If worker utilization is high scripts are processing their maximum.</p>
+<p>The <strong>mean service</strong> time and <strong>worker utilization</strong> are the key metrics if the service time is greater than the base time, jobs are not cleared fast enough. If worker utilization is high scripts are processing their maximum.</p>
 
 <h4>Increase Capacity?</h4>
 
@@ -265,6 +256,12 @@
     <!-- Sidebar -->
     <aside class="three columns">
 
+      <div>
+	<img src="/images/me.jpg" />
+	
+      </div>
+    <hr />
+    
       <h5>Categories</h5>
       <ul class="side-nav">
        <li><a href="/php.html">PHP</a></li>
@@ -296,6 +293,8 @@
       </ul>
     </aside>
 
+    
+    
     <!-- End Sidebar -->
   </div>
 
@@ -306,7 +305,7 @@
 
   <footer class="row">
         <div class="twelve columns">
-      <hr />
+      <br /><br />
       <div class="row">
         <div class="six columns">
           <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
