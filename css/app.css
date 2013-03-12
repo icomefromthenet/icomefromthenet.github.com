@@ -13,7 +13,24 @@
    Shared Styles
 ----------------------------------------- */
 
+body {
+    background-color: #FCFCFC
+}
 
+h1 {
+    font-size: 2em;
+    font-weight:bold;
+    margin-bottom: 0.5em;
+}
+
+.name h1 {
+    color:#FFFFFF;
+}
+
+
+article ol,ul {
+    list-style-position:  inside;
+}
 
 /* -----------------------------------------
    Page Name 1

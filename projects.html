@@ -16,39 +16,58 @@
   <title>IcomeFromTheNet  &mdash; About this website</title>    
  
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="/css/foundation.min.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/foundation.css">
   <link rel="stylesheet" href="/css/app.css">
-  
-  <script src="/js/modernizr.foundation.js"></script>
+  <script src="/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
+    
+   
+ <!-- Nav Bar -->
 
-  <!-- Nav Bar -->
-
-  <div class="row">
-    <div class="twelve columns">
-      <ul class="nav-bar">
+  <div class="fixed">
+  <nav class="top-bar">
+    <!-- Title Area -->
+    <ul class="title-area">
+        <li class="name">
+	    <h1>
+		<a href="/">IComeFromTheNet.</a>
+	    </h1>
+	</li>
+	<li class="toggle-topbar menu-icon">
+	    <a href="#"><span>Menu</span></a>
+	</li>
+    </ul>
+    <section class="top-bar-section">
+     <ul class="right">
+	<li class="divider"></li>
 	<li><a href="/">Home</a></li>
-        <li><a href="/blog.html">Blog</a></li>
-        <li><a href="/projects.html">Projects</a></li>
-        <li><a href="/favourite/index.html">What I Like</a></li>
+
+	<li class="divider"></li>
+	<li><a href="/blog.html">Blog</a></li>
+
+	<li class="divider"></li>
+	<li><a href="/projects.html">Projects</a></li>
+	
+	<li class="divider"></li>
+	<li><a href="/favourite/index.html">What I Like</a></li>
+	
+	<li class="divider"></li>
 	<li><a href="/bookshelf.html">Bookshelf</a></li>
       </ul>
-
-      <h1>I Come From The Net.</h1>
-      <hr />
-    </div>
+    </section>
+  </nav>
   </div>
-
   <!-- End Nav -->
 
 
   <!-- Main Page Content and Sidebar -->
 
   <div class="row">
-
+    <br />
     <!-- Main Blog Content -->
-    <div class="nine columns" role="content">
+    <div class="large-9 columns" role="content">
 		    <article>
 	    		
 	    		<ul class="breadcrumbs">
@@ -56,67 +75,64 @@
   <li class="current"><a href="#">Projects</a></li>
 </ul>
 
-<div class="row">
-    <div class="ten columns">
+<div class="large-10 columns">
         <h3>LaterJob - A Database Queue with Metrics </h3>
-    </div>
-    <div class="two columns">
+</div>
+<div class="large-2 columns hide-for-small ">
         <a class="round button" href="https://github.com/icomefromthenet/LaterJob">Github</a>
-    </div>
-    <div class="twelve columns">
-        <p>I have in the past needed a simple queue for applications hosted on &#8216;sharded host&#8217; or other limited php environments with:</p>
-        <ul class="disc">
-            <li>
+</div>
+<div class="large-12 columns">
+        <p>I have in the past needed a simple queue for applications hosted on 'sharded host' or other limited php environments with:</p>
+        <dl class="disc">
+            <dd>
                 no access to the cli,
-            </li>
-            <li>
+            </dd>
+            <dd>
                 no persistent processes
-            </li>
-            <li>
+            </dd>
+            <dd>
                 no chmod - physically set write permissions in cpanel or equivlent.
-            </li>
-            <li>
+            </dd>
+            <dd>
                 Small scale single node installations.
-            </li>
-        </ul>
+            </dd>
+        </dl>
        
        <h5 class="small">I developed LaterJob to power jobs such as:</h5>
-        <ul class="disc">
-            <li>
-                Mail Queues.    
-            </li>
-            <li>
-                Sms Queues.
-            </li>
-            <li>
-                Thumbnail Generation.
-            </li>
-            <li>
-                PDF Generation.
-            </li>
-        </ul>
+        <dl class="disc">
+            <dd>
+                1. Mail Queues.    
+            </dd>
+            <dd>
+                2. Sms Queues.
+            </dd>
+            <dd>
+                3. Thumbnail Generation.
+            </dd>
+            <dd>
+                4. PDF Generation.
+            </dd>
+        </dt>
         
         <dl>
             <dt><h5 class="small">Its a simple queue, simlar to Zend\DB\Queue but comes packaged with metrics</h5></dt>
-            <dd>Written with Symfony2 components and Doctrine DBAL.</dd>
-            <dd>Uses Cron scripts for workers and metric generation.</dd>
-            <dd>Can Run many workers.</dd>
-            <dd>Multiple queues per script if needed.</dd>
-            <dd>Records state transitions into the database as activity which drive Metrics.</dd>
-            <dd>Installed via composer. </dd>
-            <dd>Restful Silex API to query monitor data</dd>
+            <dd>* Written with Symfony2 components and Doctrine DBAL.</dd>
+            <dd>* Uses Cron scripts for workers and metric generation.</dd>
+            <dd>* Can Run many workers.</dd>
+            <dd>* Multiple queues per script if needed.</dd>
+            <dd>* Records state transitions into the database as activity which drive Metrics.</dd>
+            <dd>* Installed via composer. </dd>
+            <dd>* Restful Silex API to query monitor data</dd>
       </dl>
-    </div>
 </div>
 
-<div class="row">
-    <div class="ten columns">
-        <h3>QuickTag - A tag library for Silex </h3>
-    </div>
-    <div class="two columns">
-        <a class="round button" href="https://github.com/icomefromthenet/LaterJob">Github</a>
-    </div>
-    <div class="twelve columns">    
+<div class="large-10 columns">
+    <h3>QuickTag - A tag library for Silex </h3>
+</div>
+<div class="large-2 columns hide-for-small ">
+    <a class="round button" href="https://github.com/icomefromthenet/LaterJob">Github</a>
+</div>
+<div class="large-12 columns">    
     <p>
         I wrote this component to provide a composer available tag library that uses doctrine DBAL in its back-end.
     </p>
@@ -128,166 +144,206 @@
         <dd>UserContext (integer) restrict tags to a given user id.</dd>
     </dl>
     
-    <ul class="disc">
-        <li>Written using Doctrine DBAL.</li>
-        <li>Optional Restful Silex API Supports GET/POST/PUT/DELETE.</li>
-        <li>Can be used with Zend/Tag/Cloud, doing tag clouds is easy.</li>
-        <li>PHP 5.3 and up.</li>
-    </ul>    
-
-    
-    </div>    
+    <h5 class="small">Key features:</h5>
+    <dl class="disc">
+        <dd>Written using Doctrine DBAL.</dd>
+        <dd>Optional Restful Silex API Supports GET/POST/PUT/DELETE.</dd>
+        <dd>Can be used with Zend/Tag/Cloud, doing tag clouds is easy.</dd>
+        <dd>PHP 5.3 and up.</dd>
+    </dl>    
 </div>
 
-<div class="row">
-    <div class="ten columns">
+<hr />
+
+
+<div class="large-10 columns">
         <h3>Faker - Tests Data Generator</h3>
-    </div>
-    <div class="two columns">
+</div>
+<div class="large-2 columns hide-for-small">
         <a class="round button" href="http://www.icomefromthenet.com/Faker/">Github</a>
-    </div>
 </div>
-
-<p>There have been a few ports of the original Perl Faker and a few of those have been to php. What started as another port has grown instead into a comprehensive data generation tool, powered by Doctrine DBAL and Symfony2 Components.</p>
-
-<p>Where I  wanted Faker will help:</p>
-
-<ol>
-<li>Write PHPUnit DBUnit fixtures. </li>
-<li>Fill database with test data for user loading test.</li>
-</ol>
-
-<p>I wanted to achive a balance between the original Perl Faker (used for screen mockups) and all pupose Java tool like <a href="http://databene.org/">Databene</a> or <a href="http://msdn.microsoft.com/en-us/library/aa833211(v=vs.80).aspx">Microsft equivalent</a>. Easier to lean, easy extension and xml and cli based. </p>
-
-<p>Features:</p>
-
-<ol>
-<li>Supports multiple platforms using Doctrine DBAL. </li>
-<li>Supports PHPUnit Dataset XML for DBUnit fixtures.</li>
-<li>Supports Standard Sql DDL (insert statements) for the platforms mentioned above.</li>
-<li>Output Formats have their own templates that can be customized per project. (add own branding).</li>
-<li>Configured via XML file that feels closer to your database.</li>
-<li>Many built in datatypes, Including text, numeric , autoincrements, email , city names etc</li>
-<li>Embraces extension, write own types, writters and locales.</li>
-<li>Installed via composer</li>
-<li>Analyse and build struct from existing database.</li>
-<li>Seed your random number generator for repeatable results (seed global|table|column|type).</li>
-<li>Supported custom locals, generate test data in unicode. (Not just ENGLISH).</li>
-<li>Project folder that can be version controled with your project.</li>
-</ol>
+<div class="large-12 columns">
+    <p>
+        There have been a few ports of the original Perl Faker and a few of those have been to php. What started as another port has grown instead into a comprehensive data generation tool, powered by Doctrine DBAL and Symfony2 Components.
+    </p>
+    
+    <p>
+        I  wanted Faker will help write PHPUnit DBUnit fixtures and fill database with test data for user loading test.
+    </p>
+    
+    <p>
+        I wanted to achive a balance between the original Perl Faker (used for screen mockups) and all pupose Java tool like <a href="http://databene.org/">Databene</a> or <a href="http://msdn.microsoft.com/en-us/library/aa833211(v=vs.80).aspx">Microsoft equivalent</a> . Easier to lean, easy extension and xml and cli based. 
+    </p>
+    
+    <h5 class="small">Features: </h5>
+    <dl>
+        <dd>1. Supports multiple platforms using Doctrine DBAL. </dd>
+        <dd>2. Supports PHPUnit Dataset XML for DBUnit fixtures. </dd>
+        <dd>3. Supports Standard Sql DDL (insert statements) for the platforms mentioned above. </dd>
+        <dd>4. Output Formats have heir own templates that can be customized per project. (add own branding). </dd>
+        <dd>5. Configured via XML file that feels closer to your database.</dd>
+        <dd>6. Many built in datatypes, Including text, numeric , autoincrements, email , city names etc</dd>
+        <dd>7. Embraces extension, write own types, writters and locales.
+        <dd>8. Installed via composer</dd>
+        <dd>9. Analyse and build struct from existing database.</dd>
+        <dd>10. Seed your random number generator for repeatable results (seed global|table|column|type).</dd>
+        <dd>11. Supported custom locals, generate test data in unicode. (Not just ENGLISH).</dd>
+        <dd>12. Project folder that can be version controled with your project.</dd>
+    </dt>
+</div>
 
 <hr />
 
-<div class="row">
-    <div class="ten columns">
+<div class="large-10 columns">
         <h3>Migrations - Schema manager build on Doctrine DBAL and Symfony2</h3>
-    </div>
-    <div class="two columns">
+</div>
+<div class="large-2 columns hide-for-small">
         <a class="round button" href="https://github.com/icomefromthenet/Migrations">Github</a>
-    </div>
 </div>
-
-<p>Migrations are a method to manage changes within your data store. With the popularity of distributed source control (git) and their promotion of branching, recording changes to the datastore between commits along multiple branches can become a headace. </p>
-
-<p>Migration tools help to contain changes for each feature and commit into atomic units called <code>migrations</code>. These are applied in sequence and are usually indexed with a timestamp.</p>
-
-<p>PHP frameworks and ORM&#8217;s such like Codeigniter, Propel, CakePHP all provide migration tools, while project like Doctrine provide a diff tool and a migration tool. </p>
-
-<p>I wanted to develop a tool that forfilled the following requirements:</p>
-
-<ol>
-<li>Provides basic migration toolsets.</li>
-<li>Install via composer.</li>
-<li>PHP 5.3 and up.</li>
-<li>Project folder that can be commited to repository.</li>
-<li>Support multiple Platforms.</li>
-<li>Help with Sanity checks to find sync errors.</li>
-</ol>
-
-<p>I found another database migration project project called <a href="https://github.com/davejkiger/mysql-php-migrations">mysql-php-migrations</a>. I decied to model my own project in its image.</p>
-
-<p>I later discovered a lesser know part of doctine the <a href="http://www.doctrine-project.org/projects/dbal.html">Doctrine DBAL</a> and by incorporating within gained a database abstraction supporting multiple platforms.</p>
-
-<p>I would later use symfony2 console, config and file related packages tying them all together with [Pimple DI] (http://pimple.sensiolabs.org/).    </p>
-
-<p>Links :</p>
-
-<ul>
-<li><a href="href=&quot;https://github.com/icomefromthenet/Migrations">Project Repo</a> </li>
-<li><a href="https://github.com/davejkiger/mysql-php-migrations">mysql-php-migrations</a> - Provided inspiration for my own library</li>
-<li><a href="http://guides.rubyonrails.org/migrations.html">Ruby Rails Migrations</a> - Process Guide to migrations.</li>
-</ul>
+<div class="large-12 columns"> 
+    
+    <p>
+        Migrations are a method to manage changes within your data store. With the popularity of distributed source control (git) and their promotion of branching, recording changes to the datastore between commits along multiple branches can become a headace. 
+    </p>
+    
+    <p>
+    Migration tools help to contain changes for each feature and commit into atomic units called `migrations`. These are applied in sequence and are usually indexed with a timestamp.
+    </p>
+    
+    <p>
+    PHP frameworks and ORM's such like Codeigniter, Propel, CakePHP all provide migration tools, while project like Doctrine provide a diff tool and a migration tool. 
+    </p>
+    
+    <p>
+        <strong>
+        I wanted to develop a tool that forfilled the following:
+        </strong>
+    </p>
+    
+    <dl>
+        <dd>1. Provides basic migration toolsets.</dd>
+        <dd>2. Install via composer.</dd>
+        <dd>3. PHP 5.3 and up.</dd>
+        <dd>4. Project folder that can be commited to repository.</dd>
+        <dd>5. Support multiple Platforms.</dd>
+        <dd>6. Help with Sanity checks to find sync errors.</dd>
+    </dl>
+    
+    <p>
+    I found another database migration project project called <a href="https://github.com/davejkiger/mysql-php-migrations">mysql-php-migrations</a>. I decied to model my own project in its image.
+    </p>
+    
+    <p>
+    I later discovered the doctine database abstraction layer <a href="http://www.doctrine-project.org/projects/dbal.html">Doctrine DBAL</a> and with it support for multiple platforms.
+    </p>
+    
+    <p>
+    I would later use symfony2 console, config and file related packages tying them all together with <a href="http://pimple.sensiolabs.org/">Pimple DI</a>.    
+    </p>
+    
+    <h5 class="small">Links : </h5>
+    
+    <dl>
+        <dd>
+            <a href="href="https://github.com/icomefromthenet/Migrations">Project Repo</a> - Github repo
+        </dd> 
+        
+        <dd>
+            <a href="https://github.com/davejkiger/mysql-php-migrations">mysql-php-migrations</a> - Provided inspiration for my own library
+        </dd>
+        
+        <dd>
+            <a href="http://guides.rubyonrails.org/migrations.html">Ruby Rails Migrations</a>- Process Guide to migrations.
+        </dd>
+    </dl>
+</div>
 
 <hr />
 
-<div class="row">
-    <div class="ten columns">
-        <h3>WURFL Decision Engine</h3>
-    </div>
-    <div class="two columns">
-        <a class="round button" href="https://github.com/icomefromthenet/WURFLExtension">Github</a>
-    </div>
-</div>
-
-<p>During the course of a commerical project I needed the services of a User Agent sniffer <a href="http://dbapi.scientiamobile.com/wiki/index.php/Main_Page">TeraWURFL</a> was a large open source list of user agents and device profiles. The developers have since started a commercial venture and updates are restried to commercial customers.</p>
-
-<p>My extension sought to help a developer once they have identified the UA and have a device profile. How to decide which action to take next?</p>
-
-<p>In essence I developed a decision engine. The engines components include the critera, the decision workflow and a decision strategies. The code was inspired by the symfony2 authentication component.  </p>
-
-<p>I also improved TeraWURFL CLI install scripts by combining them with the symfony2 console.</p>
-
-<p>This was the first project where I used <a href="http://vagrantup.com/">Vagrant</a> vm manager. Which I spend almost as much time learning than writing the projects code.</p>
-
-<hr />
-
-<div class="row">
-    <div class="ten columns">
+<div class="large-10 columns">
         <h3>Reverse Regex</h3>
-    </div>
-    <div class="two columns">
+</div>
+<div class="large-2 columns hide-for-small">
         <a class="round button" href="https://github.com/icomefromthenet/ReverseRegex">Github</a>
-    </div>
+</div>
+<div class="large-12 columns"> 
+
+    <p>
+        A project with a simple goal, convert a regular expression into a text string. Other platforms have access to same functionality it's been implemented in Java, .Net , perl , ruby.
+    </p>
+    <p>
+        I developed this as part of Faker but decided that others might have use of it and spun it out an example will help illustrate.
+    </p>
+    <p>
+    <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">&lt;?php</span>
+    <span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Lexer<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> PHPStats\Generator\SimpleRandom<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Parser<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Generator\Scope<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;"># load composer
+</span>    <span style="color: #b1b100;">require</span> <span style="color: #0000ff;">&quot;vendor/autoload.php&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$lexer</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span>  Lexer<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'[a-z]{10}'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$gen</span>   <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SimpleRandom<span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">10007</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$parser</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Parser<span style="color: #009900;">&#40;</span><span style="color: #000088;">$lexer</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$parser</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">parse</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getResult</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">generate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #339933;">,</span><span style="color: #000088;">$gen</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>    </p>
 </div>
 
-<p>A project with a simple goal, convert a regular expression into a text string. Other platforms have access to same functionality it&#8217;s been implemented in Java, .Net , perl , ruby.</p>
+<hr />
 
-<p>I developed this as part of Faker but decided that others might have use of it and spun it out an example will help illustrate.</p>
+<div class="large-10 columns">
+        <h3>WURFL Decision Engine</h3>
+</div>
+<div class="large-2 columns hide-for-small">
+        <a class="round button" href="https://github.com/icomefromthenet/WURFLExtension">Github</a>
+</div>
 
-<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
-<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Lexer<span style="color: #339933;">;</span>
-<span style="color: #000000; font-weight: bold;">use</span> PHPStats\Generator\SimpleRandom<span style="color: #339933;">;</span>
-<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Parser<span style="color: #339933;">;</span>
-<span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Generator\Scope<span style="color: #339933;">;</span>
-&nbsp;
-<span style="color: #666666; font-style: italic;"># load composer
-</span><span style="color: #b1b100;">require</span> <span style="color: #0000ff;">&quot;vendor/autoload.php&quot;</span><span style="color: #339933;">;</span>
-&nbsp;
-<span style="color: #000088;">$lexer</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span>  Lexer<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'[a-z]{10}'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<span style="color: #000088;">$gen</span>   <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SimpleRandom<span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">10007</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
-&nbsp;
-<span style="color: #000088;">$parser</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Parser<span style="color: #009900;">&#40;</span><span style="color: #000088;">$lexer</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-<span style="color: #000088;">$parser</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">parse</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getResult</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">generate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #339933;">,</span><span style="color: #000088;">$gen</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-&nbsp;
-<span style="color: #b1b100;">echo</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
-<span style="color: #000000; font-weight: bold;">?&gt;</span>
-&nbsp;</pre>
+<div class="large-12 columns"> 
 
-<p><hr /></p>
+    <p>
+        During the course of a commerical project I needed the services of a User Agent sniffer <a href="http://dbapi.scientiamobile.com/wiki/index.php/Main_Page">TeraWURFL</a> was a large open source list of user agents and device profiles. The developers have since started a commercial venture and updates are restried to commercial customers.
+    </p>
+    <p>
+        My extension sought to help a developer once they have identified the UA and have a device profile. How to decide which action to take next?
+    </p>
+    <p>
+        In essence I developed a decision engine. The engines components include the critera, the decision workflow and a decision strategies. The code was inspired by the symfony2 authentication component.  
+    </p>
+    <p>
+        I also improved TeraWURFL CLI install scripts by combining them with the symfony2 console.
+    </p>
+    <p>
+        This was the first project where I used <a href="http://vagrantup.com/">Vagrant</a> vm manager. Which I spend almost as much time learning than writing the projects code.
+    </p>
 
-<div class="row">
-    <div class="ten columns">
+</div>
+
+
+
+
+<hr />
+<div class="large-10 columns">
         <h3>PHPStats Fork</h3>
-    </div>
-    <div class="two columns">
-        <a class="round button" href="https://github.com/icomefromthenet/PHPStats">Github</a>
-    </div>
 </div>
+<div class="large-2 columns hide-for-small">
+        <a class="round button" href="https://github.com/icomefromthenet/PHPStats">Github</a>
+</div>
+<div class="large-12 columns">
+    <p>    
+    This is a good example of the power of github. I don't have the knowledge to develop a stats library for php. However I still needed to provide probability distributions for <a href="http://www.icomefromthenet.com/Faker/">Faker Tests Data Generator</a>.
+    </p>
 
-<p>This is a good example of the power of github. I don&#8217;t have the knowledge to develop a stats library for php. However I still needed to provide probability distributions for <a href="http://www.icomefromthenet.com/Faker/">Faker Tests Data Generator</a>.</p>
-
-<p>The library abused static and global state making it hard to unit test in Faker. By forking I improved the quality and testability. This is the power of collaborative development. </p>
+    <p>
+    The library abused static and global state making it hard to unit test in Faker. By forking I improved the quality and testability. This is the power of collaborative development. 
+    </p>
+</div>
 
 	    </article>
 	      
@@ -297,14 +353,7 @@
 
 
     <!-- Sidebar -->
-    <aside class="three columns">
-
-      <div>
-	<img src="/images/me.jpg" />
-	
-      </div>
-    <hr />
-    
+    <aside class="large-3 columns hide-for-small">
       <h5>Categories</h5>
       <ul class="side-nav">
        <li><a href="/php.html">PHP</a></li>
@@ -346,15 +395,15 @@
 
   <!-- Footer -->
 
-  <footer class="row">
-        <div class="twelve columns">
-      <br /><br />
+  <footer class="row hide-for-small">
+        <div class="large-12 columns">
+      <hr />
       <div class="row">
-        <div class="six columns">
+        <div class="large-6 columns">
           <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
         </div>
-        <div class="six columns">
-          <ul class="link-list right">
+        <div class="large-6 columns">
+          <ul class="inline-list right">
             <li><a href="/">Home</a></li>
 	    <li><a href="/blog.html">Blog</a></li>
 	    <li><a href="/projects.html">Projects</a></li>
@@ -370,11 +419,14 @@
   
   
   <!-- Included JS Files (Compressed) -->
-  <script src="/js/jquery.js"></script>
+  
+  <script src="/js/vendor/jquery.js"></script>
   <script src="/js/foundation.min.js"></script>
   
-  <!-- Initialize JS Plugins -->
   <script src="/js/app.js"></script>
-  
+  <script>
+      $(document).foundation().foundation('joyride', 'start');
+  </script>
+    
 </body>
 </html>

@@ -16,39 +16,58 @@
   <title>IcomeFromTheNet  &mdash; Favourite Movies</title>    
  
   <!-- Included CSS Files (Compressed) -->
-  <link rel="stylesheet" href="/css/foundation.min.css">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/foundation.css">
   <link rel="stylesheet" href="/css/app.css">
-  
-  <script src="/js/modernizr.foundation.js"></script>
+  <script src="/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
+    
+   
+ <!-- Nav Bar -->
 
-  <!-- Nav Bar -->
-
-  <div class="row">
-    <div class="twelve columns">
-      <ul class="nav-bar">
+  <div class="fixed">
+  <nav class="top-bar">
+    <!-- Title Area -->
+    <ul class="title-area">
+        <li class="name">
+	    <h1>
+		<a href="/">IComeFromTheNet.</a>
+	    </h1>
+	</li>
+	<li class="toggle-topbar menu-icon">
+	    <a href="#"><span>Menu</span></a>
+	</li>
+    </ul>
+    <section class="top-bar-section">
+     <ul class="right">
+	<li class="divider"></li>
 	<li><a href="/">Home</a></li>
-        <li><a href="/blog.html">Blog</a></li>
-        <li><a href="/projects.html">Projects</a></li>
-        <li><a href="/favourite/index.html">What I Like</a></li>
+
+	<li class="divider"></li>
+	<li><a href="/blog.html">Blog</a></li>
+
+	<li class="divider"></li>
+	<li><a href="/projects.html">Projects</a></li>
+	
+	<li class="divider"></li>
+	<li><a href="/favourite/index.html">What I Like</a></li>
+	
+	<li class="divider"></li>
 	<li><a href="/bookshelf.html">Bookshelf</a></li>
       </ul>
-
-      <h1>I Come From The Net.</h1>
-      <hr />
-    </div>
+    </section>
+  </nav>
   </div>
-
   <!-- End Nav -->
 
 
   <!-- Main Page Content and Sidebar -->
 
   <div class="row">
-
+    <br />
     <!-- Main Blog Content -->
-    <div class="nine columns" role="content">
+    <div class="large-9 columns" role="content">
 		    <article>
 	    		
 	    		<ul class="breadcrumbs">
@@ -130,14 +149,7 @@
 
 
     <!-- Sidebar -->
-    <aside class="three columns">
-
-      <div>
-	<img src="/images/me.jpg" />
-	
-      </div>
-    <hr />
-    
+    <aside class="large-3 columns hide-for-small">
       <h5>Categories</h5>
       <ul class="side-nav">
        <li><a href="/php.html">PHP</a></li>
@@ -179,15 +191,15 @@
 
   <!-- Footer -->
 
-  <footer class="row">
-        <div class="twelve columns">
-      <br /><br />
+  <footer class="row hide-for-small">
+        <div class="large-12 columns">
+      <hr />
       <div class="row">
-        <div class="six columns">
+        <div class="large-6 columns">
           <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
         </div>
-        <div class="six columns">
-          <ul class="link-list right">
+        <div class="large-6 columns">
+          <ul class="inline-list right">
             <li><a href="/">Home</a></li>
 	    <li><a href="/blog.html">Blog</a></li>
 	    <li><a href="/projects.html">Projects</a></li>
@@ -203,11 +215,14 @@
   
   
   <!-- Included JS Files (Compressed) -->
-  <script src="/js/jquery.js"></script>
+  
+  <script src="/js/vendor/jquery.js"></script>
   <script src="/js/foundation.min.js"></script>
   
-  <!-- Initialize JS Plugins -->
   <script src="/js/app.js"></script>
-  
+  <script>
+      $(document).foundation().foundation('joyride', 'start');
+  </script>
+    
 </body>
 </html>

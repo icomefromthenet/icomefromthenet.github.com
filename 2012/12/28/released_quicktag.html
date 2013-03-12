@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="where I come from." />
+  <meta name="author" content="Lewis Dyer" />
+  <meta name="generator" content="PieCrust 0.9.0-dev" />
+  <meta name="template-engine" content="Twig" /> 
+  <title>IcomeFromTheNet  &mdash; Released QuickTag - A Tag Library for Silex</title>    
+ 
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="/js/vendor/custom.modernizr.js"></script>
+</head>
+<body>
+    
+   
+ <!-- Nav Bar -->
+
+  <div class="fixed">
+  <nav class="top-bar">
+    <!-- Title Area -->
+    <ul class="title-area">
+        <li class="name">
+	    <h1>
+		<a href="/">IComeFromTheNet.</a>
+	    </h1>
+	</li>
+	<li class="toggle-topbar menu-icon">
+	    <a href="#"><span>Menu</span></a>
+	</li>
+    </ul>
+    <section class="top-bar-section">
+     <ul class="right">
+	<li class="divider"></li>
+	<li><a href="/">Home</a></li>
+
+	<li class="divider"></li>
+	<li><a href="/blog.html">Blog</a></li>
+
+	<li class="divider"></li>
+	<li><a href="/projects.html">Projects</a></li>
+	
+	<li class="divider"></li>
+	<li><a href="/favourite/index.html">What I Like</a></li>
+	
+	<li class="divider"></li>
+	<li><a href="/bookshelf.html">Bookshelf</a></li>
+      </ul>
+    </section>
+  </nav>
+  </div>
+  <!-- End Nav -->
+
+
+  <!-- Main Page Content and Sidebar -->
+
+  <div class="row">
+    <br />
+    <!-- Main Blog Content -->
+    <div class="large-9 columns" role="content">
+	
+<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li class="current"><a href="#">Article</a></li>
+</ul>
+
+<article>
+			<h3><a href="#">Released QuickTag - A Tag Library for Silex</a></h3>
+		
+				
+				
+		<ul class="inline-list">
+			<li>
+			Tags: 
+							php,
+							projects,
+						</li>
+			<li>
+							Written on: December 28, 2012    
+						</li>
+		</ul>
+		<hr />
+		<br />
+	<p>I wrote this component to provide a composer available tag library that uses doctrine DBAL as its back-end. It can be downloaded from <strong><a class="link" href="https://github.com/icomefromthenet/QuickTag/">github</a></strong>.</p>
+
+<p><h4 class="subheader">A Tag has the following properties: </h3>
+<ul class="disc">
+    <li> Title (45 character) name. no default case upper or lower fine.</li>
+    <li> Weight (float) used to order a set of tags.</li>
+    <li> Created (DateTime) used to sort old and new tags</li>
+    <li> UserContext (integer) restrict tags to a given user id.</li>
+</ul></p>
+
+<p><h4 class="subheader">Features of the library:</h3>
+<ul class="disc">
+    <li> Written using Doctrine DBAL. 
+    <li> Optional Restful Silex API Supports GET/POST/PUT/DELETE. </li>
+    <li> Can be used with Zend/Tag/Cloud, doing tag clouds is easy. </li>
+    <li> PHP 5.3 and up.</li>
+</ul></p>
+
+<!--more-->
+
+<h3 class="subheader">API Methods</h3>
+
+<p><h4 class="subheader">Store a tag Create/Update</h3></p>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> QuickTag\Model\StoredTag<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$storedTag</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> StoredTag<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setTitle</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'mytitle'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setWeight</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">1</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setTagCreated</span><span style="color: #009900;">&#40;</span><span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">setUserContext</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">3</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;"># fetch service from the provider
+</span>    <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$tagService</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">storeTag</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$storeTag</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">'tag has been stored at id '</span><span style="color: #339933;">.</span> <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTagId</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>
+
+<p>During an update the id must be set and only the title and weight and user context can be changed.</p>
+
+<p><h4 class="subheader"> Lookup a tag by id.</h3></p>
+
+<p>&lt;?php
+<pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> QuickTag\Model\StoredTag<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;"># fetch service from the provider
+</span>    <span style="color: #000088;">$storeTag</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$tagService</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">lookupTag</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$id</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$storedTag</span> instanceOf StoredTag <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">'tag has been gound at id '</span><span style="color: #339933;">.</span> <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTagId</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>
+<h4 class="subheader"> Searching for a tag </h3></p>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+    <span style="color: #666666; font-style: italic;"># Search for tags started with titte `my` and belong to user 3
+</span>    <span style="color: #000088;">$tagCollection</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$tagService</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">findTag</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+                <span style="color: #339933;">-&gt;</span><span style="color: #004000;">limit</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$limit</span><span style="color: #009900;">&#41;</span>
+                <span style="color: #339933;">-&gt;</span><span style="color: #004000;">offset</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$offset</span><span style="color: #009900;">&#41;</span>
+                <span style="color: #339933;">-&gt;</span><span style="color: #004000;">orderByTitle</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'asc'</span><span style="color: #009900;">&#41;</span>
+                <span style="color: #339933;">-&gt;</span><span style="color: #004000;">filterByNameStartsWith</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'my'</span><span style="color: #009900;">&#41;</span>
+                <span style="color: #339933;">-&gt;</span><span style="color: #004000;">filterByUserContext</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">3</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><a href="http://www.php.net/end"><span style="color: #990000;">end</span></a><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+        <span style="color: #339933;">-&gt;</span><span style="color: #004000;">find</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><a href="http://www.php.net/count"><span style="color: #990000;">count</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$tagCollection</span><span style="color: #009900;">&#41;</span> <span style="color: #339933;">&gt;</span> <span style="color: #cc66cc;">0</span> <span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        <span style="color: #b1b100;">echo</span> <a href="http://www.php.net/sprintf"><span style="color: #990000;">sprintf</span></a><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'found %s number of tags'</span><span style="color: #339933;">,</span><a href="http://www.php.net/count"><span style="color: #990000;">count</span></a><span style="color: #009900;">&#40;</span><span style="color: #000088;">$tagCollection</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>
+
+<p><h4 class="subheader"> Removing a Tag.</h3></p>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+    <span style="color: #000000; font-weight: bold;">use</span> QuickTag\Model\StoredTag<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$id</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">1</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;"># fetch service from the provider
+</span>    <span style="color: #000088;">$storeTag</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$tagService</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">lookupTag</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$id</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #000088;">$tagService</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">removeTag</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$storeTag</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">if</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #009900;">&#41;</span> <span style="color: #009900;">&#123;</span>
+        <span style="color: #b1b100;">echo</span> <span style="color: #0000ff;">'tag has been removed at id '</span><span style="color: #339933;">.</span> <span style="color: #000088;">$storedTag</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getTagId</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #009900;">&#125;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>
+
+<p>The API under <code>QuickTag\Silex\Provider\TagServiceProvider</code> has basic examples on how to use the library.</p>
+
+<p><h4 class="subheader">Using Zend Tag Cloud </h3></p>
+
+<pre class="php" style="font-family:monospace;"><span style="color: #000000; font-weight: bold;">&lt;?php</span>
+    <span style="color: #000000; font-weight: bold;">use</span> Zend\Tag\Cloud<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> QuickTag\Model\StoredTag<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$tagA</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> StoredTag<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$tagB</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> StoredTag<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$tagC</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> StoredTag<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$cloud</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Cloud<span style="color: #009900;">&#40;</span><a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+        <span style="color: #0000ff;">'tags'</span> <span style="color: #339933;">=&gt;</span> <a href="http://www.php.net/array"><span style="color: #990000;">array</span></a><span style="color: #009900;">&#40;</span>
+           <span style="color: #000088;">$tagA</span><span style="color: #339933;">,</span><span style="color: #000088;">$tagB</span><span style="color: #339933;">,</span><span style="color: #000088;">$tagC</span>
+        <span style="color: #009900;">&#41;</span>
+    <span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;">// Render the cloud</span>
+    <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$cloud</span><span style="color: #339933;">;</span>
+<span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>
+
+</article>
+      
+    </div>
+
+    <!-- End Main Content -->
+
+
+    <!-- Sidebar -->
+    <aside class="large-3 columns hide-for-small">
+      <h5>Categories</h5>
+      <ul class="side-nav">
+       <li><a href="/php.html">PHP</a></li>
+       <li><a href="/ansible.html">Ansible</a></li>
+       
+      </ul>
+    
+    <hr />
+          
+      <h5>Tags</h5>
+      <ul class="side-nav">
+       <li>
+	<a href="/tag/php.html"><span class="round label">PHP</span></a>
+       </li>
+       <li>
+	<a href="/tag/ansible.html"><span class="round label">Ansible</span></a>
+       </li>
+       <li>
+	<a href="/tag/faker.html"><span class="round label">Faker</span></a>
+       </li>
+       <li>
+	<a href="/tag/migrations.html"><span class="round label">Migrations</span></a>
+       </li>
+       <li>
+	<a href="/tag/regex.html"><span class="round label">Regex</span></li></a>
+      <li>
+	<a href="/tag/projects.html"><span class="round label">Projects</span></li></a>
+      </li>
+      </ul>
+    </aside>
+
+    
+    
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row hide-for-small">
+        <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="/">Home</a></li>
+	    <li><a href="/blog.html">Blog</a></li>
+	    <li><a href="/projects.html">Projects</a></li>
+	    <li><a href="/favourite/index.html">What I Like</a></li>
+	    <li><a href="/bookshelf.html">Bookshelf</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      </footer>
+
+  <!-- End Footer -->
+  
+  
+  <!-- Included JS Files (Compressed) -->
+  
+  <script src="/js/vendor/jquery.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  
+  <script src="/js/app.js"></script>
+  <script>
+      $(document).foundation().foundation('joyride', 'start');
+  </script>
+    
+</body>
+</html>
