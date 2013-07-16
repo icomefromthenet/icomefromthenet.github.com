@@ -13,7 +13,7 @@
   <meta name="author" content="Lewis Dyer" />
   <meta name="generator" content="PieCrust 1.0.0-dev" />
   <meta name="template-engine" content="Twig" /> 
-  <title>IcomeFromTheNet </title>    
+  <title>IcomeFromTheNet  &mdash; LaterJob Queue Library</title>    
  
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="/css/normalize.css">
@@ -62,124 +62,66 @@
   <!-- Main Page Content and Sidebar -->
   <!-- Main Blog Content -->
   <div class="large-9 columns" role="content">
-		
-	<ul class="breadcrumbs">
-    <li><a href="/">Home</a></li>
-    <li class="unavailable"><a href="#">Category</a></li>
-    <li class="current"><a href="#">php</a></li>
+		    <article>
+	    		
+	    		<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/projects.html">Projects</a></li>
+  <li class="current"><a href="#">LaterJob</a></li>
 </ul>
-    
-<article>
-	<h3>
-		<a href="/2012/12/28/released_quicktag.html">Released QuickTag - A Tag Library for Silex</a>
-	</h3>
-	
-	<p>I wrote this component to provide a composer available tag library that uses doctrine DBAL as its back-end. It can be downloaded from <strong><a class="link" href="https://github.com/icomefromthenet/QuickTag/">github</a></strong>.</p>
 
-<p><h4 class="subheader">A Tag has the following properties: </h3>
-<ul class="disc">
-    <li> Title (45 character) name. no default case upper or lower fine.</li>
-    <li> Weight (float) used to order a set of tags.</li>
-    <li> Created (DateTime) used to sort old and new tags</li>
-    <li> UserContext (integer) restrict tags to a given user id.</li>
-</ul></p>
-
-<p><h4 class="subheader">Features of the library:</h3>
-<ul class="disc">
-    <li> Written using Doctrine DBAL. 
-    <li> Optional Restful Silex API Supports GET/POST/PUT/DELETE. </li>
-    <li> Can be used with Zend/Tag/Cloud, doing tag clouds is easy. </li>
-    <li> PHP 5.3 and up.</li>
-</ul></p>
-
-
-	
-	<div>	
-					<a href="/2012/12/28/released_quicktag.html">Read More</a> - 
-				
-					Written on December 28, 2012; 
-			</div>
-	
-</article>
-<br /><br />
-
-
-    
-<article>
-	<h3>
-		<a href="/2012/12/20/released_later_job.html">Released LaterJob - Database queue for shared web hosting with metrics</a>
-	</h3>
-	
-	<p>I released a new library today <a href="https://github.com/icomefromthenet/LaterJob">LaterJob</a>.</p>
-
-<p>I have had an interest in simple queues since writing an email campaign tool in 2010. In that project I used a single cron worker and a database table and given the small scale it worked. During development I began to ask myself an important question <strong>how long does it take to send?</strong> with different phrasing <strong>what is the service time of the queue, the time taken from a job entering to it leaving?</strong></p>
-
-
-	
-	<div>	
-					<a href="/2012/12/20/released_later_job.html">Read More</a> - 
-				
-					Written on December 20, 2012; 
-			</div>
-	
-</article>
-<br /><br />
-
-
-    
-<article>
-	<h3>
-		<a href="/2012/10/18/released_reverse_regex.html">Released ReverseRegex</a>
-	</h3>
-	
-	<p>I released a new library today <a href="https://github.com/icomefromthenet/ReverseRegex">ReverseRegex</a>. It uses the regular expression syntax to populate a text string. I developed this component to include in my <a href="https://github.com/icomefromthenet/Faker">Faker</a> project. By using a regex to populate a field I replace the 2 most commonly used column datatypes numeric and text, that is 2 less new DSL to learn.</p>
-
-<p>Database testing tools like Faker on other platforms also use regex&#8217;s to define text patterns I have seen similar code implemented in .Net, Java and Perl and now php. </p>
-
-
-	
-	<div>	
-					<a href="/2012/10/18/released_reverse_regex.html">Read More</a> - 
-				
-					Written on October 18, 2012; 
-			</div>
-	
-</article>
-<br /><br />
-
-
-    
-<article>
-	<h3>
-		<a href="/2012/10/12/embracing_composer_for_projects.html">Switched from Pear to Composer</a>
-	</h3>
-	
-	<p>I was using pear for two of my homebrew projects <a href="https://github.com/icomefromthenet/Faker">Faker</a> and <a href="https://github.com/icomefromthenet/Migrations">Migrations</a>. I was not enamored by deployment steps and in my case struggles combined with lack of noob friendly documentation.</p>
-
-
-	
-	<div>	
-					<a href="/2012/10/12/embracing_composer_for_projects.html">Read More</a> - 
-				
-					Written on October 12, 2012; 
-			</div>
-	
-</article>
-<br /><br />
-
-
-
-
-	<div class="panel">
-	  <ul class="pagination">
-	    		  <li class="arrow unavailable"><a href="">Older Entries</a></li>
-	    	    
-	    		  			  <li class="current"><a href="/php.html">1</a></li>
-		  	    	    
-	  		  <li class="arrow unavailable"><a href="">Newer Entries</a></li>
-	  	  </ul>
-	</div>
-      
+<div class="large-10 columns">
+        <h3>LaterJob - A Database Queue with Metrics </h3>
+</div>
+<div class="large-2 columns hide-for-small ">
+        <a class="round button" href="https://github.com/icomefromthenet/LaterJob">Github</a>
+</div>
+<div class="large-12 columns">
+        <p>I have in the past needed a simple queue for applications hosted on 'sharded host' or other limited php environments with:</p>
+        <dl class="disc">
+            <dd>
+                no access to the cli,
+            </dd>
+            <dd>
+                no persistent processes
+            </dd>
+            <dd>
+                no chmod - physically set write permissions in cpanel or equivlent.
+            </dd>
+            <dd>
+                Small scale single node installations.
+            </dd>
+        </dl>
+       
+       <h5 class="small">I developed LaterJob to power jobs such as:</h5>
+        <dl class="disc">
+            <dd>
+                1. Mail Queues.    
+            </dd>
+            <dd>
+                2. Sms Queues.
+            </dd>
+            <dd>
+                3. Thumbnail Generation.
+            </dd>
+            <dd>
+                4. PDF Generation.
+            </dd>
+        </dt>
+        
+        <dl>
+            <dt><h5 class="small">Its a simple queue, simlar to Zend\DB\Queue but comes packaged with metrics</h5></dt>
+            <dd>* Written with Symfony2 components and Doctrine DBAL.</dd>
+            <dd>* Uses Cron scripts for workers and metric generation.</dd>
+            <dd>* Can Run many workers.</dd>
+            <dd>* Multiple queues per script if needed.</dd>
+            <dd>* Records state transitions into the database as activity which drive Metrics.</dd>
+            <dd>* Installed via composer. </dd>
+            <dd>* Restful Silex API to query monitor data</dd>
+      </dl>
+</div>
+	    </article>
+	      
   </div>
 
   <!-- End Main Content -->

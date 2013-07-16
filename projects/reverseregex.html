@@ -13,7 +13,7 @@
   <meta name="author" content="Lewis Dyer" />
   <meta name="generator" content="PieCrust 1.0.0-dev" />
   <meta name="template-engine" content="Twig" /> 
-  <title>IcomeFromTheNet  &mdash; About this website</title>    
+  <title>IcomeFromTheNet  &mdash; ReverseRegex</title>    
  
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="/css/normalize.css">
@@ -66,68 +66,46 @@
 	    		
 	    		<ul class="breadcrumbs">
   <li><a href="/">Home</a></li>
-  <li class="current"><a href="#">Projects</a></li>
+  <li><a href="/projects.html">Projects</a></li>
+  <li class="current"><a href="#">ReverseRegex</a></li>
 </ul>
 
 
-<ul class="small-block-grid-2">
-  <li>
-      <h3>LaterJob: A database queue with metrics </h3>
-      <img src="/images/laterjob_small.jpg"/>
-      <a class="large button expand" href="https://github.com/icomefromthenet/LaterJob">Github</a>
-      <a class="secondary large button expand" href="/projects/laterjob.html">Read More</a>
-  </li>
-  <li>
+<div class="large-10 columns">
+        <h3>Reverse Regex</h3>
+</div>
+<div class="large-2 columns hide-for-small">
+        <a class="round button" href="https://github.com/icomefromthenet/ReverseRegex">Github</a>
+</div>
+<div class="large-12 columns"> 
 
-      <h3>Faker: Test data generator built with Doctrine DBAL</h3>
-      <img src="/images/faker_small.jpg"/>
-      <a class="large button expand" href="http://www.icomefromthenet.com/Faker/">Github</a>
-      <a class="secondary large button expand" href="/projects/faker.html">Read More</a>
-
-  </li>
-  <li>
-
-      <h3>QuickTag: A tag library for Silex</h3>
-      <img src="/images/quicktag_small.jpg"/>
-      <a class="large button expand" href="https://github.com/icomefromthenet/QuickTag">Github</a>
-      <a class="secondary large button expand" href="/projects/quicktag.html">Read More</a>
-
-  </li>
-  <li>
-
-      <h3>Migrations: DB schema manager</h3>
-      <img src="/images/migrations_small.jpg"/>
-      <a class="large button expand" href="https://github.com/icomefromthenet/Migrations">Github</a>
-      <a class="secondary large button expand" href="/projects/migrations.html">Read More</a>
-
-  </li>
-  <li>
-
-      <h3>Reverse Regex: Create text from regex </h3>
-      <img src="/images/reverseregex_small.jpg"/>
-      <a class="large button expand" href="https://github.com/icomefromthenet/ReverseRegex">Github</a>
-      <a class="secondary large button expand" href="/projects/reverseregex.html">Read More</a>
-
-  </li>
-   <li>
-
-      <h3>DBALGateway: TableGateway for DBAL</h3>
-      <img src="/images/dbalgateway_small.jpg"/>
-      <a class="large button expand" href="https://github.com/icomefromthenet/DBALGateway">Github</a>
-      <a class="secondary large button expand" href="/projects/dbalgateway.html">Read More</a>
-
-  </li>
-  <li>
-
-      <h3>PHPStats Fork</h3>
-      <img src="/images/phpstats_small.jpg"/>
-      <a class="large button expand" href="https://github.com/icomefromthenet/PHPStats">Github</a>
-      <a class="secondary large button expand" href="/projects/phpstats.html">Read More</a>
-
-  </li>
-</ul>
-
-
+    <p>
+        A project with a simple goal, convert a regular expression into a text string. Other platforms have access to same functionality it's been implemented in Java, .Net , perl , ruby.
+    </p>
+    <p>
+        I developed this as part of Faker but decided that others might have use of it and spun it out an example will help illustrate.
+    </p>
+    <p>
+    <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">&lt;?php</span>
+    <span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Lexer<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> PHPStats\Generator\SimpleRandom<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Parser<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> ReverseRegex\Generator\Scope<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #666666; font-style: italic;"># load composer
+</span>    <span style="color: #b1b100;">require</span> <span style="color: #0000ff;">&quot;vendor/autoload.php&quot;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$lexer</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span>  Lexer<span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'[a-z]{10}'</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$gen</span>   <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> SimpleRandom<span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">10007</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$result</span> <span style="color: #339933;">=</span> <span style="color: #0000ff;">''</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$parser</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> Parser<span style="color: #009900;">&#40;</span><span style="color: #000088;">$lexer</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">,</span><span style="color: #000000; font-weight: bold;">new</span> Scope<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$parser</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">parse</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">getResult</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">generate</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$result</span><span style="color: #339933;">,</span><span style="color: #000088;">$gen</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">echo</span> <span style="color: #000088;">$result</span><span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">?&gt;</span>
+&nbsp;</pre>    </p>
+</div>
 	    </article>
 	      
   </div>
