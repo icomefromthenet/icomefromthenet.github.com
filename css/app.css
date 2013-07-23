@@ -13,12 +13,14 @@
    Shared Styles
 ----------------------------------------- */
 
+
 body {
-    background-color: #FCFCFC
+    background-color: #F5F5F5;
+    
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 3em;
     font-weight:bold;
     margin-bottom: 0.5em;
 }
@@ -30,6 +32,35 @@ h1 {
 
 article ol,ul {
     list-style-position:  inside;
+}
+
+footer {
+    background-color: #FFFFFF;
+}
+
+.jumbotron {
+    background: linear-gradient(45deg, #B24926 0%, #FAA523 100%) repeat scroll 0 0 transparent;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
+    color: #FFFFFF;
+    padding: 40px 0px 40px 20px;
+    position: relative;
+    text-align: left;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.075);
+}
+
+.jumbotron h1 {
+    
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: #FFFFFF;
+}
+
+.jumbotron p {
+    font-size: 1.5em;
+    font-weight: 300;
+    line-height: 1.25;
+    margin-bottom: 30px;
 }
 
 /* -----------------------------------------
