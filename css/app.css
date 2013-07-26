@@ -16,19 +16,7 @@
 
 body {
     background-color: #F5F5F5;
-    
 }
-
-h1 {
-    font-size: 3em;
-    font-weight:bold;
-    margin-bottom: 0.5em;
-}
-
-.name h1 {
-    color:#FFFFFF;
-}
-
 
 article ol,ul {
     list-style-position:  inside;
@@ -42,27 +30,28 @@ footer {
     background-color: #FAA523;
     background: linear-gradient(45deg, #B24926 0%, #FAA523 100%) repeat scroll 0 0 transparent;
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
-    color: #FFFFFF;
-    padding: 40px 0px 40px 20px;
-    position: relative;
-    text-align: left;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.075);
+    text-align: left;
+    color: #FFFFFF;
+    padding: 20px 0px 20px 20px;
+
 }
 
 .jumbotron h1 {
-    
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 1;
     color: #FFFFFF;
+    margin-bottom: 0.3em;
+    font-size: 2em;
 }
 
 .jumbotron p {
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: 300;
     line-height: 1.25;
-    margin-bottom: 30px;
 }
+
 
 /* -----------------------------------------
    Page Name 1
