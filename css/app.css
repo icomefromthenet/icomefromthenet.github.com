@@ -16,6 +16,9 @@
 
 body {
     background-color: #F5F5F5;
+    background-image: url('../images/weave.png');
+    background-repeat: repeat;
+    
 }
 
 article ol,ul {
