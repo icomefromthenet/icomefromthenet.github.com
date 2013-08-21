@@ -11,9 +11,9 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="description" content="where I come from." />
   <meta name="author" content="Lewis Dyer" />
-  <meta name="generator" content="PieCrust 1.1.0-dev" />
+  <meta name="generator" content="PieCrust 1.0.0-dev" />
   <meta name="template-engine" content="Twig" /> 
-  <title>IcomeFromTheNet  &mdash; QuickTag - Tag helper for Silex</title>    
+  <title>IcomeFromTheNet  &mdash; Favourite Recepies</title>    
  
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="/css/normalize.css">
@@ -22,16 +22,9 @@
   <script src="/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
-  <div class="short-header">
-    <div class="main-headline row">
-      <div class="main-headline">
-        <h2>IComeFromTheNet.</h2>
-      </div>
-    </div>
-  </div>
+ <!-- Nav Bar -->
   
-  <!-- Nav Bar -->
-  <nav class="top-bar">
+    <nav class="top-bar">
       <!-- Title Area -->
       <ul class="title-area">
 	  <li class="name">
@@ -61,7 +54,14 @@
       </section>
   </nav>
   <!-- End Nav -->
-  
+
+  <div class="short-header">
+    <div class="main-headline row">
+      <div class="main-headline">
+        <h2>IComeFromTheNet.</h2>
+      </div>
+    </div>
+  </div>
   
   <!-- Main Page Content and Sidebar -->
   <!-- Main Blog Content -->
@@ -69,42 +69,33 @@
   
   <div class="row content" style="background-color:#FFFFFF">
   <div class="large-9 columns" role="content">
-		    <article>
-	    		
-	    		<ul class="breadcrumbs">
+	
+<ul class="breadcrumbs">
   <li><a href="/">Home</a></li>
-  <li><a href="/projects.html">Projects</a></li>
-  <li class="current"><a href="#">QuickTag</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li class="current"><a href="#">Article</a></li>
 </ul>
 
-<div class="large-10 columns">
-    <h3>QuickTag - A tag library for Silex </h3>
-</div>
-<div class="large-2 columns hide-for-small ">
-    <a class="round button" href="https://github.com/icomefromthenet/LaterJob">Github</a>
-</div>
-<div class="large-12 columns">    
-    <p>
-        I wrote this component to provide a composer available tag library that uses doctrine DBAL in its back-end.
-    </p>
-    <h5 class="small">A Tag has the following properties:</h5>
-    <dl>
-        <dd>Title (45 character) name. no default case upper or lower fine.</dd>
-        <dd>Weight (float) used to order a set of tags.</dd>
-        <dd>Created (DateTime) used to sort old and new tags</dd>
-        <dd>UserContext (integer) restrict tags to a given user id.</dd>
-    </dl>
-    
-    <h5 class="small">Key features:</h5>
-    <dl class="disc">
-        <dd>Written using Doctrine DBAL.</dd>
-        <dd>Optional Restful Silex API Supports GET/POST/PUT/DELETE.</dd>
-        <dd>Can be used with Zend/Tag/Cloud, doing tag clouds is easy.</dd>
-        <dd>PHP 5.3 and up.</dd>
-    </dl>    
-</div>
-	    </article>
-	      
+<article>
+			<h3><a href="#">Favourite Recepies</a></h3>
+		
+				
+				
+		<ul class="inline-list">
+			<li>
+			Tags: 
+							health,
+						</li>
+			<li>
+							Written on: July 30, 2013    
+						</li>
+		</ul>
+		<hr />
+		<br />
+	<h1>ddd</h1>
+
+</article>
+      
   </div>
 
   <!-- End Main Content -->
@@ -156,11 +147,11 @@
 
   <!-- Footer -->
 
-  <footer class="row hide-for-small footer-padding">
+  <footer class="row hide-for-small">
         <div class="large-12 columns">
       <div class="row">
         <div class="large-6 columns">
-          <p>Github: <a href="https://github.com/icomefromthenet">https://github.com/icomefromthenet</a></p>
+          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
@@ -185,9 +176,7 @@
   
   <script src="/js/app.js"></script>
   <script>
-    $(document).ready(function() {
       $(document).foundation();
-    });
   </script>
     
 </body>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  <meta name="description" content="where I come from." />
+  <meta name="author" content="Lewis Dyer" />
+  <meta name="generator" content="PieCrust 1.1.0-dev" />
+  <meta name="template-engine" content="Twig" /> 
+  <title>IcomeFromTheNet  &mdash; ReverseRegex</title>    
+ 
+  <!-- Included CSS Files (Compressed) -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/foundation.css">
+  <link rel="stylesheet" href="/css/app.css">
+  <script src="/js/vendor/custom.modernizr.js"></script>
+</head>
+<body>
+  <div class="short-header">
+    <div class="main-headline row">
+      <div class="main-headline">
+        <h2>IComeFromTheNet.</h2>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Nav Bar -->
+  <nav class="top-bar">
+      <!-- Title Area -->
+      <ul class="title-area">
+	  <li class="name">
+	   
+	  </li>
+	  <li class="toggle-topbar menu-icon">
+	      <a href="#"><span>Menu</span></a>
+	  </li>
+      </ul>
+      <section class="top-bar-section">
+       <ul class="right">
+	  <li class="divider"></li>
+	  <li><a href="/">Bio</a></li>
+  
+	  <li class="divider"></li>
+	  <li><a href="/blog.html">Blog</a></li>
+  
+	  <li class="divider"></li>
+	  <li><a href="/projects.html">Projects</a></li>
+	  
+	  <li class="divider"></li>
+	  <li><a href="/favourite/index.html">What I Like</a></li>
+	  
+	  <li class="divider"></li>
+	  <li><a href="/bookshelf.html">Bookshelf</a></li>
+	</ul>
+      </section>
+  </nav>
+  <!-- End Nav -->
+  
+  
+  <!-- Main Page Content and Sidebar -->
+  <!-- Main Blog Content -->
+
+  
+  <div class="row content" style="background-color:#FFFFFF">
+  <div class="large-9 columns" role="content">
+		    <article>
+	    		
+	    		<ul class="breadcrumbs">
+  <li><a href="/">Home</a></li>
+  <li><a href="/projects.html">Projects</a></li>
+  <li class="current"><a href="#">Schedule Helper</a></li>
+</ul>
+
+
+<div class="large-10 columns">
+        <h3>Schedule Helper</h3>
+</div>
+<div class="large-2 columns hide-for-small">
+        <a class="round button" href="https://github.com/icomefromthenet/ScheduleHelper">Github</a>
+</div>
+<div class="large-12 columns"> 
+  
+<p>When working with dates and schedules, php has 2 built in helpers DateInteral and DatePeriod using these two classes will get you most of the way. There are a few things to keep in mind.</p>
+
+<ol>
+    <li>DatePeriod is not by default and Iterator it use Traversable interface and does not have methods like next,current,rewind.</li>
+    <li>You will need to match your period to DSL used in DateInterval.</li>
+    <li>Can't use DatePeriod to represent non liner date intervals, e.g weekdays only.</li>
+    <li>Still need to design a method to map between a setting and a DateInterval if you want to create it later.</li>
+    <li>If want to start in middle you need to skip ahead in your own code to given offset.</li>
+</ol>
+
+<p>I wrote this helper to address these shortcomings, I use a builder that will accept a string name and returns an Iterator, during construction you may ask the iterator to skip ahead and I have implement the following common periods.</p>
+
+<ol>
+    <li>Yearly</li>
+    <li>Weekly</li>
+    <li>Monthly</li>
+    <li>Fortnightly</li>
+    <li>Weekday</li>
+    <li>BiMonthly</li>
+    <li>Quarterly</li>
+</ol>
+
+<h2> Examples </h2>
+
+<p>
+    <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> IComeFromTheNet\Schedule\ScheduleBuilder<span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$start</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$reoccurance</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">12</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$builder</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ScheduleBuilder<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">return</span> <span style="color: #000088;">$builder</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">daily</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$start</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">limit</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$reoccurance</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">skipStart</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+</p>
+
+
+<p>This create a daily schedule that limit to 12 occursions as where skip the first period. Important to note that there will be 13 occurances, if the start is not skipped. This is a feature of PHP DatePeriod when setting a limit using an integer the number is <strong><em>re-occurance after the start</em></strong>. Total occurances is start + re-occurances (limit).</p>
+
+<p>
+    <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> IComeFromTheNet\Schedule\ScheduleBuilder<span style="color: #339933;">;</span>
+&nbsp;
+&nbsp;
+    <span style="color: #000088;">$start</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$reoccurance</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">12</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$builder</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ScheduleBuilder<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">return</span> <span style="color: #000088;">$builder</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">monthly</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$start</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">limit</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$reoccurance</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">offset</span><span style="color: #009900;">&#40;</span><span style="color: #cc66cc;">4</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+</p>
+
+<p>This will return a monthly schedule 4 occurances in. If the starting month was August the first starting value at december. Using a LimitIterator to restrict the result set.</p>
+
+<p>
+    <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
+    <span style="color: #000000; font-weight: bold;">use</span> IComeFromTheNet\Schedule\ScheduleBuilder<span style="color: #339933;">;</span>
+&nbsp;
+&nbsp;
+    <span style="color: #000088;">$start</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$reoccurance</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">12</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #000088;">$builder</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ScheduleBuilder<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
+&nbsp;
+    <span style="color: #b1b100;">return</span> <span style="color: #000088;">$builder</span><span style="color: #339933;">-&gt;</span><span style="color: #004000;">create</span><span style="color: #009900;">&#40;</span><span style="color: #0000ff;">'monthly'</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$start</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">limit</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$reoccurance</span><span style="color: #009900;">&#41;</span>
+            <span style="color: #339933;">-&gt;</span><span style="color: #004000;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
+    </p>
+
+
+
+<p>This will return a monthly schedule, the rule is defined using a string and not direct method call.</p>
+ 
+</div>
+   
+
+	    </article>
+	      
+  </div>
+
+  <!-- End Main Content -->
+
+
+  <!-- Sidebar -->
+  <aside class="large-3 columns hide-for-small">
+    <img src="/images/me.jpg" />
+     
+    <hr />
+    
+    <h5>Categories</h5>
+    <ul class="side-nav">
+      <li><a href="/php.html">PHP</a></li>
+      <li><a href="/devtools.html">Devtools</a></li>
+      <li><a href="/general.html">General</a></li>
+    </ul>
+    
+    <hr />
+          
+    <h5>Tags</h5>
+      <ul class="side-nav">
+       <li>
+	<a href="/tag/php.html"><span class="round label">PHP</span></a>
+       </li>
+       <li>
+	<a href="/tag/ansible.html"><span class="round label">Ansible</span></a>
+       </li>
+       <li>
+	<a href="/tag/faker.html"><span class="round label">Faker</span></a>
+       </li>
+       <li>
+	<a href="/tag/migrations.html"><span class="round label">Migrations</span></a>
+       </li>
+       <li>
+	<a href="/tag/regex.html"><span class="round label">Regex</span></a>
+       </li>
+      <li>
+	<a href="/tag/projects.html"><span class="round label">Projects</span></a>
+      </li>
+      </ul>
+  </aside>
+    
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row hide-for-small footer-padding">
+        <div class="large-12 columns">
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Github: <a href="https://github.com/icomefromthenet">https://github.com/icomefromthenet</a></p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="/">Home</a></li>
+	    <li><a href="/blog.html">Blog</a></li>
+	    <li><a href="/projects.html">Projects</a></li>
+	    <li><a href="/favourite/index.html">What I Like</a></li>
+	    <li><a href="/bookshelf.html">Bookshelf</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+      </footer>
+
+  <!-- End Footer -->
+  
+  
+  <!-- Included JS Files (Compressed) -->
+  
+  <script src="/js/vendor/jquery.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  
+  <script src="/js/app.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(document).foundation();
+    });
+  </script>
+    
+</body>
+</html>

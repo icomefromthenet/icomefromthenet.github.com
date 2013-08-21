@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="description" content="where I come from." />
   <meta name="author" content="Lewis Dyer" />
-  <meta name="generator" content="PieCrust 1.0.0-dev" />
+  <meta name="generator" content="PieCrust 1.1.0-dev" />
   <meta name="template-engine" content="Twig" /> 
   <title>IcomeFromTheNet </title>    
  
@@ -22,15 +22,20 @@
   <script src="/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
- 
-  <div class="row" style="background-color: #FFFFFF">
-   <!-- Nav Bar -->
+  <div class="short-header">
+    <div class="main-headline row">
+      <div class="main-headline">
+        <h2>IComeFromTheNet.</h2>
+      </div>
+    </div>
+  </div>
   
-    <nav class="top-bar contain-to-grid">
+  <!-- Nav Bar -->
+  <nav class="top-bar">
       <!-- Title Area -->
       <ul class="title-area">
 	  <li class="name">
-	      
+	   
 	  </li>
 	  <li class="toggle-topbar menu-icon">
 	      <a href="#"><span>Menu</span></a>
@@ -54,20 +59,15 @@
 	  <li><a href="/bookshelf.html">Bookshelf</a></li>
 	</ul>
       </section>
-    </nav>
-    <div class="jumbotron contain-to-grid">
-        <h1>
-	    IComeFromTheNet.
-	</h1>
-	<p>
-	  Coming from a network port near you.
-	</p>
-    </div>
+  </nav>
   <!-- End Nav -->
-  <br />
-
+  
+  
   <!-- Main Page Content and Sidebar -->
   <!-- Main Blog Content -->
+
+  
+  <div class="row content" style="background-color:#FFFFFF">
   <div class="large-9 columns" role="content">
 		
 	<ul class="breadcrumbs">
@@ -76,39 +76,35 @@
       <li class="current"><a href="#">ansible</a></li>
 </ul>
 
+<ul class="post_list">
         
-<article>
-	<h3>
+             <li class="top">
+            <div class="row"> 
+                <div class="large-2 column">
+                    <div class="number hide-for-small">
+                        <span> 1 </span>
+                    </div>
+                </div>
+                <div class="large-10 column">
+                    	
+	<h4 class="subheader"> 
 		<a href="/2012/09/15/ansible_for_the_win.html">Ansible For the Win</a>
-	</h3>
+	</h4>
+	<p>
+		<span>Tags : php, ansible</span>
+	</p>
 	
-	<p>I have arrived at a winner. After deciding to embracing <a href="http://vagrantup.com/">Vagrant</a> to manage my development environments. I trialed both <a href="http://www.opscode.com/">Chef</a> and <a href="http://puppetlabs.com/">Puppet</a> and found both frustrating.</p>
+	
 
-<p>After installing vagrant I used a bash provisioner and <a href="https://gist.github.com/3080128">came up with</a> a few scripts to setup a basic dev environment. I later moved on to trial the industry leaders chef and puppet.</p>
 
+
+    
+                </div>
+            </div>
+        </li>
+      </ul>
 
 	
-	<div>	
-					<a href="/2012/09/15/ansible_for_the_win.html">Read More</a> - 
-				
-					Written on September 15, 2012; 
-			</div>
-	
-</article>
-<br /><br />
-
-
-
-
-	<div class="panel">
-	  <ul class="pagination">
-	    		  <li class="arrow unavailable"><a href="">Older Entries</a></li>
-	    	    
-	    		  			  <li class="current"><a href="/tag/ansible.html">1</a></li>
-		  	    	    
-	  		  <li class="arrow unavailable"><a href="">Newer Entries</a></li>
-	  	  </ul>
-	</div>
       
   </div>
 
@@ -120,11 +116,12 @@
     <img src="/images/me.jpg" />
      
     <hr />
-          
+    
     <h5>Categories</h5>
     <ul class="side-nav">
       <li><a href="/php.html">PHP</a></li>
-      <li><a href="/ansible.html">Ansible</a></li>
+      <li><a href="/devtools.html">Devtools</a></li>
+      <li><a href="/general.html">General</a></li>
     </ul>
     
     <hr />
@@ -160,12 +157,11 @@
 
   <!-- Footer -->
 
-  <footer class="row hide-for-small">
+  <footer class="row hide-for-small footer-padding">
         <div class="large-12 columns">
-      <hr />
       <div class="row">
         <div class="large-6 columns">
-          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+          <p>Github: <a href="https://github.com/icomefromthenet">https://github.com/icomefromthenet</a></p>
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
@@ -190,7 +186,9 @@
   
   <script src="/js/app.js"></script>
   <script>
+    $(document).ready(function() {
       $(document).foundation();
+    });
   </script>
     
 </body>

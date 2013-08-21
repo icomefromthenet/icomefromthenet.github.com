@@ -15,56 +15,91 @@
 
 
 body {
-    background-color: #F5F5F5;
-    background-image: url('../images/weave.png');
-    background-repeat: repeat;
+    background: #F7FBFD;
     
+}
+
+.footer-padding  {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.top-bar {
+    margin-bottom:20px;
+}
+
+.short-header {
+    background: none repeat scroll 0 0 #2AA3C7;
+    margin:0px;
+}
+
+.headline-down {
+    padding: 42px 0 0px;
+}
+
+.main-headline h2 {
+    color: white;
+    font-size: 35px;
+    font-weight: bold !important;
+    margin-bottom: 0;
+    padding: 0px;
+}
+
+.content {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+
+.blog-category-heading {
+    border-bottom: 1px dotted #CCCCCC;
+    padding: 0px 10px;
 }
 
 article ol,ul {
     list-style-position:  inside;
 }
 
-footer {
-    background-color: #FFFFFF;
+div.number {
+    background-color: #BFE4EF;
+    border-radius: 125px 125px 125px 125px;
+    height: 60px;
+    margin: 0 10px 10px;
+    padding-top: 10px;
+    text-align: center;
+    width: 60px;
 }
-
-.jumbotron {
-    background-color: #FAA523;
-    background: linear-gradient(45deg, #B24926 0%, #FAA523 100%) repeat scroll 0 0 transparent;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2) inset, 0 -3px 7px rgba(0, 0, 0, 0.2) inset;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 0, 0, 0.075);
-    text-align: left;
-    color: #FFFFFF;
-    padding: 20px 0px 20px 20px;
-
-}
-
-.jumbotron h1 {
+div.number span {
+    color: #2BA6CB;
+    font-size: 24px;
     font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 1;
-    color: #FFFFFF;
-    margin-bottom: 0.3em;
-    font-size: 2em;
 }
 
-.jumbotron p {
-    font-size: 1em;
-    font-weight: 300;
-    line-height: 1.25;
+.post_list {
+  list-style: none;   
 }
 
+li.top {
+    border-bottom: 0 solid #EFEFEF;
+    border-radius: 3px 3px 3px 3px;
+    margin-bottom: 30px;
+}
 
-/* -----------------------------------------
-   Page Name 1
------------------------------------------ */
+li.top h4.subheader {
+    margin-bottom: 0 !important;
+}
 
+li.top p {
+    margin-bottom: 0 !important;
+}
 
+li.top p span {
+    color: #777777;
+    font-size: 12px;
+    line-height: 11px !important;
+}
 
-
-/* -----------------------------------------
-   Page Name 2
------------------------------------------ */
-
+li.top hr {
+    margin: -5px 0 5px;
+}
 

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="description" content="where I come from." />
   <meta name="author" content="Lewis Dyer" />
-  <meta name="generator" content="PieCrust 1.0.0-dev" />
+  <meta name="generator" content="PieCrust 1.1.0-dev" />
   <meta name="template-engine" content="Twig" /> 
   <title>IcomeFromTheNet  &mdash; Books</title>    
  
@@ -22,15 +22,20 @@
   <script src="/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
- 
-  <div class="row" style="background-color: #FFFFFF">
-   <!-- Nav Bar -->
+  <div class="short-header">
+    <div class="main-headline row">
+      <div class="main-headline">
+        <h2>IComeFromTheNet.</h2>
+      </div>
+    </div>
+  </div>
   
-    <nav class="top-bar contain-to-grid">
+  <!-- Nav Bar -->
+  <nav class="top-bar">
       <!-- Title Area -->
       <ul class="title-area">
 	  <li class="name">
-	      
+	   
 	  </li>
 	  <li class="toggle-topbar menu-icon">
 	      <a href="#"><span>Menu</span></a>
@@ -54,20 +59,15 @@
 	  <li><a href="/bookshelf.html">Bookshelf</a></li>
 	</ul>
       </section>
-    </nav>
-    <div class="jumbotron contain-to-grid">
-        <h1>
-	    IComeFromTheNet.
-	</h1>
-	<p>
-	  Coming from a network port near you.
-	</p>
-    </div>
+  </nav>
   <!-- End Nav -->
-  <br />
-
+  
+  
   <!-- Main Page Content and Sidebar -->
   <!-- Main Blog Content -->
+
+  
+  <div class="row content" style="background-color:#FFFFFF">
   <div class="large-9 columns" role="content">
 		    <article>
 	    		
@@ -127,7 +127,7 @@
 <p>Go read now but don&#8217;t expect an easy time it will take effort but you will be rewarded. </p>
 
 <blockquote>
-  <p>Neuromancer is a 1984 novel by William Gibson, a seminal work in the cyberpunk genre and the first winner of the science-fiction &#8220;triple crown&#8221; â the Nebula Award, the Philip K. Dick Award, and the Hugo Award. It was Gibson&#8217;s debut novel and the beginning of the Sprawl trilogy. The novel tells the story of a washed-up computer hacker hired by a mysterious employer to pull off the ultimate hack.
+  <p>Neuromancer is a 1984 novel by William Gibson, a seminal work in the cyberpunk genre and the first winner of the science-fiction &#8220;triple crown&#8221; — the Nebula Award, the Philip K. Dick Award, and the Hugo Award. It was Gibson&#8217;s debut novel and the beginning of the Sprawl trilogy. The novel tells the story of a washed-up computer hacker hired by a mysterious employer to pull off the ultimate hack.
   <a href="http://en.wikipedia.org/wiki/Neuromancer">Wikipedia</a></p>
 </blockquote>
 
@@ -197,11 +197,12 @@ should be taught in schools. My own kids (one day who knows) will have a copy un
     <img src="/images/me.jpg" />
      
     <hr />
-          
+    
     <h5>Categories</h5>
     <ul class="side-nav">
       <li><a href="/php.html">PHP</a></li>
-      <li><a href="/ansible.html">Ansible</a></li>
+      <li><a href="/devtools.html">Devtools</a></li>
+      <li><a href="/general.html">General</a></li>
     </ul>
     
     <hr />
@@ -237,12 +238,11 @@ should be taught in schools. My own kids (one day who knows) will have a copy un
 
   <!-- Footer -->
 
-  <footer class="row hide-for-small">
+  <footer class="row hide-for-small footer-padding">
         <div class="large-12 columns">
-      <hr />
       <div class="row">
         <div class="large-6 columns">
-          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+          <p>Github: <a href="https://github.com/icomefromthenet">https://github.com/icomefromthenet</a></p>
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
@@ -267,7 +267,9 @@ should be taught in schools. My own kids (one day who knows) will have a copy un
   
   <script src="/js/app.js"></script>
   <script>
+    $(document).ready(function() {
       $(document).foundation();
+    });
   </script>
     
 </body>

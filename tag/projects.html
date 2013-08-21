@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width" />
   <meta name="description" content="where I come from." />
   <meta name="author" content="Lewis Dyer" />
-  <meta name="generator" content="PieCrust 1.0.0-dev" />
+  <meta name="generator" content="PieCrust 1.1.0-dev" />
   <meta name="template-engine" content="Twig" /> 
   <title>IcomeFromTheNet </title>    
  
@@ -22,15 +22,20 @@
   <script src="/js/vendor/custom.modernizr.js"></script>
 </head>
 <body>
- 
-  <div class="row" style="background-color: #FFFFFF">
-   <!-- Nav Bar -->
+  <div class="short-header">
+    <div class="main-headline row">
+      <div class="main-headline">
+        <h2>IComeFromTheNet.</h2>
+      </div>
+    </div>
+  </div>
   
-    <nav class="top-bar contain-to-grid">
+  <!-- Nav Bar -->
+  <nav class="top-bar">
       <!-- Title Area -->
       <ul class="title-area">
 	  <li class="name">
-	      
+	   
 	  </li>
 	  <li class="toggle-topbar menu-icon">
 	      <a href="#"><span>Menu</span></a>
@@ -54,20 +59,15 @@
 	  <li><a href="/bookshelf.html">Bookshelf</a></li>
 	</ul>
       </section>
-    </nav>
-    <div class="jumbotron contain-to-grid">
-        <h1>
-	    IComeFromTheNet.
-	</h1>
-	<p>
-	  Coming from a network port near you.
-	</p>
-    </div>
+  </nav>
   <!-- End Nav -->
-  <br />
-
+  
+  
   <!-- Main Page Content and Sidebar -->
   <!-- Main Blog Content -->
+
+  
+  <div class="row content" style="background-color:#FFFFFF">
   <div class="large-9 columns" role="content">
 		
 	<ul class="breadcrumbs">
@@ -76,75 +76,59 @@
       <li class="current"><a href="#">projects</a></li>
 </ul>
 
+<ul class="post_list">
         
-<article>
-	<h3>
+             <li class="top">
+            <div class="row"> 
+                <div class="large-2 column">
+                    <div class="number hide-for-small">
+                        <span> 1 </span>
+                    </div>
+                </div>
+                <div class="large-10 column">
+                    	
+	<h4 class="subheader"> 
 		<a href="/2012/12/28/released_quicktag.html">Released QuickTag - A Tag Library for Silex</a>
-	</h3>
+	</h4>
+	<p>
+		<span>Tags : php, projects</span>
+	</p>
 	
-	<p>I wrote this component to provide a composer available tag library that uses doctrine DBAL as its back-end. It can be downloaded from <strong><a class="link" href="https://github.com/icomefromthenet/QuickTag/">github</a></strong>.</p>
-
-<p><h4 class="subheader">A Tag has the following properties: </h3>
-<ul class="disc">
-    <li> Title (45 character) name. no default case upper or lower fine.</li>
-    <li> Weight (float) used to order a set of tags.</li>
-    <li> Created (DateTime) used to sort old and new tags</li>
-    <li> UserContext (integer) restrict tags to a given user id.</li>
-</ul></p>
-
-<p><h4 class="subheader">Features of the library:</h3>
-<ul class="disc">
-    <li> Written using Doctrine DBAL. 
-    <li> Optional Restful Silex API Supports GET/POST/PUT/DELETE. </li>
-    <li> Can be used with Zend/Tag/Cloud, doing tag clouds is easy. </li>
-    <li> PHP 5.3 and up.</li>
-</ul></p>
-
-
 	
-	<div>	
-					<a href="/2012/12/28/released_quicktag.html">Read More</a> - 
-				
-					Written on December 28, 2012; 
-			</div>
-	
-</article>
-<br /><br />
 
 
-        
-<article>
-	<h3>
+
+    
+                </div>
+            </div>
+        </li>
+              <li class="top">
+            <div class="row"> 
+                <div class="large-2 column">
+                    <div class="number hide-for-small">
+                        <span> 2 </span>
+                    </div>
+                </div>
+                <div class="large-10 column">
+                    	
+	<h4 class="subheader"> 
 		<a href="/2012/12/20/released_later_job.html">Released LaterJob - Database queue for shared web hosting with metrics</a>
-	</h3>
+	</h4>
+	<p>
+		<span>Tags : php, projects</span>
+	</p>
 	
-	<p>I released a new library today <a href="https://github.com/icomefromthenet/LaterJob">LaterJob</a>.</p>
+	
 
-<p>I have had an interest in simple queues since writing an email campaign tool in 2010. In that project I used a single cron worker and a database table and given the small scale it worked. During development I began to ask myself an important question <strong>how long does it take to send?</strong> with different phrasing <strong>what is the service time of the queue, the time taken from a job entering to it leaving?</strong></p>
 
+
+    
+                </div>
+            </div>
+        </li>
+      </ul>
 
 	
-	<div>	
-					<a href="/2012/12/20/released_later_job.html">Read More</a> - 
-				
-					Written on December 20, 2012; 
-			</div>
-	
-</article>
-<br /><br />
-
-
-
-
-	<div class="panel">
-	  <ul class="pagination">
-	    		  <li class="arrow unavailable"><a href="">Older Entries</a></li>
-	    	    
-	    		  			  <li class="current"><a href="/tag/projects.html">1</a></li>
-		  	    	    
-	  		  <li class="arrow unavailable"><a href="">Newer Entries</a></li>
-	  	  </ul>
-	</div>
       
   </div>
 
@@ -156,11 +140,12 @@
     <img src="/images/me.jpg" />
      
     <hr />
-          
+    
     <h5>Categories</h5>
     <ul class="side-nav">
       <li><a href="/php.html">PHP</a></li>
-      <li><a href="/ansible.html">Ansible</a></li>
+      <li><a href="/devtools.html">Devtools</a></li>
+      <li><a href="/general.html">General</a></li>
     </ul>
     
     <hr />
@@ -196,12 +181,11 @@
 
   <!-- Footer -->
 
-  <footer class="row hide-for-small">
+  <footer class="row hide-for-small footer-padding">
         <div class="large-12 columns">
-      <hr />
       <div class="row">
         <div class="large-6 columns">
-          <p>Github: <a href="http://icomefromthenet.gtithub.com">http://icomefromthenet.gtithub.com </a></p>
+          <p>Github: <a href="https://github.com/icomefromthenet">https://github.com/icomefromthenet</a></p>
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
@@ -226,7 +210,9 @@
   
   <script src="/js/app.js"></script>
   <script>
+    $(document).ready(function() {
       $(document).foundation();
+    });
   </script>
     
 </body>
