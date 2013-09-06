@@ -13,7 +13,7 @@
   <meta name="author" content="Lewis Dyer" />
   <meta name="generator" content="PieCrust 1.1.0-dev" />
   <meta name="template-engine" content="Twig" /> 
-  <title>IcomeFromTheNet  &mdash; ReverseRegex</title>    
+  <title>IcomeFromTheNet  &mdash; Release Schedule Helper</title>    
  
   <!-- Included CSS Files (Compressed) -->
   <link rel="stylesheet" href="/css/normalize.css">
@@ -69,54 +69,53 @@
   
   <div class="row content" style="background-color:#FFFFFF">
   <div class="large-9 columns" role="content">
-		    <article>
-	    		
-	    		<ul class="breadcrumbs">
+	
+<ul class="breadcrumbs">
   <li><a href="/">Home</a></li>
-  <li><a href="/projects.html">Projects</a></li>
-  <li class="current"><a href="#">Schedule Helper</a></li>
+  <li><a href="/blog.html">Blog</a></li>
+  <li class="current"><a href="#">Article</a></li>
 </ul>
 
+<article>
+			<h3><a href="#">Release Schedule Helper</a></h3>
+		
+				
+				
+		<ul class="inline-list">
+			<li>
+			Tags: 
+							php,
+						</li>
+			<li>
+							Written on: August 1, 2013    
+						</li>
+		</ul>
+		<hr />
+		<br />
+	<p>
+    I release a library to help with generating re-occuring schedules. Lacking a better name I called it <a href="/projects/schedule_helper.html">ScheduleHelper.</a>
+</p>
 
-<div class="large-10 columns">
-        <h3>Schedule Helper</h3>
-</div>
-<div class="large-2 columns hide-for-small">
-        <a class="round button" href="https://github.com/icomefromthenet/ScheduleHelper">Github</a>
-</div>
-<div class="large-12 columns"> 
-  
-<p>When working with dates and schedules, php has 2 built in helpers DateInteral and DatePeriod using these two classes will get you most of the way. There are a few things to keep in mind.</p>
+<p>
+    I worked on this code for 3 afternoons, I developed this component as part of a future bill reminder app for owncloud.  
+</p>
 
-<ol>
-    <li>DatePeriod is not by default and Iterator it use Traversable interface and does not have methods like next,current,rewind.</li>
-    <li>You will need to match your period to DSL used in DateInterval.</li>
-    <li>Can't use DatePeriod to represent non liner date intervals, e.g weekdays only.</li>
-    <li>Still need to design a method to map between a setting and a DateInterval if you want to create it later.</li>
-    <li>If want to start in middle you need to skip ahead in your own code to given offset.</li>
-</ol>
-
-<p>I wrote this helper to address these shortcomings, I used a builder to hide the complexity of configuring a schedule and standardize the return type to an Iterator,
-    you may ask the builder to skip the iterator ahead while skipping the start to simulate end of period billing and I have implement the following common periods.</p>
-
-<ol>
-    <li>Yearly</li>
-    <li>Weekly</li>
-    <li>Monthly</li>
-    <li>Fortnightly</li>
-    <li>Weekday</li>
-    <li>BiMonthly</li>
-    <li>Quarterly</li>
-</ol>
+<p>
+    I used a builder to hide the complexity of configuring a schedule and standardize the return type to an Iterator,
+    you may ask the builder to skip the iterator ahead while skipping the start to simulate end of period billing and I have implement the following common periods,
+    Yearly, Weekly, Monthly, Fortnightly, Weekday, BiMonthly, Quarterly.
+</p>
 
 <h2> Examples </h2>
+
+<p>This create a daily schedule that limit to 12 re-occursions and skip the first period. Important to note that there will be 13 occurrences, if the start is not skipped. This is a feature of PHP DatePeriod when setting a limit using an integer</p>
 
 <p>
     <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
     <span style="color: #000000; font-weight: bold;">use</span> IComeFromTheNet\Schedule\ScheduleBuilder<span style="color: #339933;">;</span>
 &nbsp;
     <span style="color: #000088;">$start</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> DateTime<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
-    <span style="color: #000088;">$reoccurance</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">12</span><span style="color: #339933;">;</span>
+    <span style="color: #000088;">$occurrence</span> <span style="color: #339933;">=</span> <span style="color: #cc66cc;">12</span><span style="color: #339933;">;</span>
 &nbsp;
     <span style="color: #000088;">$builder</span> <span style="color: #339933;">=</span> <span style="color: #000000; font-weight: bold;">new</span> ScheduleBuilder<span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span>
 &nbsp;
@@ -127,8 +126,7 @@
             <span style="color: #339933;">-&gt;</span><span style="color: #004000;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
 </p>
 
-
-<p>This create a daily schedule that limit to 12 occursions as where skip the first period. Important to note that there will be 13 occurances, if the start is not skipped. This is a feature of PHP DatePeriod when setting a limit using an integer the number is <strong><em>re-occurance after the start</em></strong>. Total occurances is start + re-occurances (limit).</p>
+<p>This will return a monthly schedule 4 occurances in. If the starting month was August the first starting value at december. Using a LimitIterator to restrict the result set.</p>
 
 <p>
     <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
@@ -147,9 +145,9 @@
             <span style="color: #339933;">-&gt;</span><span style="color: #004000;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
 </p>
 
-<p>This will return a monthly schedule 4 occurances in. If the starting month was August the first starting value at december. Using a LimitIterator to restrict the result set.</p>
+<p>This will return a monthly schedule, the rule is defined using a string and not direct method call.</p>
 
-<p>
+<p><p>
     <pre class="php" style="font-family:monospace;">    <span style="color: #000000; font-weight: bold;">use</span> DateTime<span style="color: #339933;">;</span>
     <span style="color: #000000; font-weight: bold;">use</span> IComeFromTheNet\Schedule\ScheduleBuilder<span style="color: #339933;">;</span>
 &nbsp;
@@ -163,17 +161,10 @@
             <span style="color: #339933;">-&gt;</span><span style="color: #004000;">start</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$start</span><span style="color: #009900;">&#41;</span>
             <span style="color: #339933;">-&gt;</span><span style="color: #004000;">limit</span><span style="color: #009900;">&#40;</span><span style="color: #000088;">$reoccurance</span><span style="color: #009900;">&#41;</span>
             <span style="color: #339933;">-&gt;</span><span style="color: #004000;">build</span><span style="color: #009900;">&#40;</span><span style="color: #009900;">&#41;</span><span style="color: #339933;">;</span></pre>
-    </p>
+    </p></p>
 
-
-
-<p>This will return a monthly schedule, the rule is defined using a string and not direct method call.</p>
- 
-</div>
-   
-
-	    </article>
-	      
+</article>
+      
   </div>
 
   <!-- End Main Content -->

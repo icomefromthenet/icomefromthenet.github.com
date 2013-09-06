@@ -103,3 +103,9 @@ li.top hr {
     margin: -5px 0 5px;
 }
 
+pre.php {
+    background-color:#F5F5F5;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
